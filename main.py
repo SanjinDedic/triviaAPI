@@ -4,6 +4,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import sqlite3
 import json
+import os
 from typing import Optional
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi_jwt_auth import AuthJWT
@@ -53,6 +54,11 @@ app.middleware('http')(custom_allow_origin)
 def similar(s1, s2, threshold=0.6):
     similarity_ratio = SequenceMatcher(None, s1, s2).ratio()
     return similarity_ratio >= threshold
+
+def update_log(team_name, team_answer, correct_answer, score):
+    log_file = os.path.join(os.getcwd(), 'logs', 'log.txt')
+    with open(log_file, 'a') as f:
+        f.write(f"{team_name} submitted {team_answer}. Correct answer is {correct_answer}. Current score is {score}.\n")
 
 def random_color():
     #2/3 colors will have values higher than 130 and 1/3 will be lower than 60
@@ -117,11 +123,10 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
     Authorize.jwt_required()
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
-
     c.execute("SELECT * FROM questions WHERE id = ?", (a.id,))
     question = c.fetchone()
     if question == None:
-        return {"message": "Question not found"}   
+        return {"message": "Question not found"}  
     elif question[1] == a.answer or similar(question[1], a.answer):
         print(question[1], a.answer)
         pts = question[2]
@@ -137,8 +142,10 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         score += pts
         c.execute(f"UPDATE {a.table} SET score = ?, solved_questions = ? WHERE name = ?", (score, solved_questions, a.team_name))
         conn.commit()
+        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
         return {"message": "Correct"}
     else:
+        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
         return {"message": "Incorrect"}
 
 
