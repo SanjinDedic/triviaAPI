@@ -55,10 +55,10 @@ def similar(s1, s2, threshold=0.6):
     similarity_ratio = SequenceMatcher(None, s1, s2).ratio()
     return similarity_ratio >= threshold
 
-def update_log(team_name, team_answer, correct_answer, score):
+def update_log(id, team_name, team_answer, correct_answer, score):
     log_file = os.path.join(os.getcwd(), 'logs', 'log.txt')
     with open(log_file, 'a') as f:
-        f.write(f"{team_name} submitted {team_answer}. Correct answer is {correct_answer}. Current score is {score}.\n")
+        f.write(f"{team_name} submitted {team_answer} for id {id}. Correct answer is {correct_answer}. Current score is {score}.\n")
 
 def random_color():
     #2/3 colors will have values higher than 130 and 1/3 will be lower than 60
@@ -134,7 +134,6 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         #update the database table denoted by a.table
         #add pts to the score for the team and increment the solved questions
         c.execute(f"SELECT * FROM {a.table} WHERE name = ?", (a.team_name,))
-
         team = c.fetchone()
         solved_questions = team[3]
         solved_questions += 1
@@ -142,10 +141,10 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         score += pts
         c.execute(f"UPDATE {a.table} SET score = ?, solved_questions = ? WHERE name = ?", (score, solved_questions, a.team_name))
         conn.commit()
-        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
+        update_log(id=a.id, team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
         return {"message": "Correct"}
     else:
-        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=team[2])
+        update_log(id=a.id, team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=0)
         return {"message": "Incorrect"}
 
 
