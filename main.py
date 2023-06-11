@@ -145,7 +145,7 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
         return {"message": "Correct"}
     else:
-        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
+        update_log(team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=team[2])
         return {"message": "Incorrect"}
 
 
