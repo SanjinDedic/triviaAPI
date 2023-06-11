@@ -8,7 +8,6 @@ from typing import Optional
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
-from typing import List, Dict
 from difflib import SequenceMatcher
 from typing import Optional
 
