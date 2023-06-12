@@ -145,10 +145,11 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         return {"message": "Correct"}
     else:
         update_log(id=a.id, team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=0)
-        return {"message": "Incorrect"}
+
+        return {"message": "Incorrect", "correct_answer": question[1]}  
 
 
-@app.post("/quick_signup")
+@app.post("/quick_signup")  
 async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
     team_name = team.name
     team_color = random_color()
