@@ -9,3 +9,5 @@
 .local
 .ssh
 database.db
+app.log
+main_bk2.py
