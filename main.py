@@ -20,36 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-'''
-async def custom_allow_origin(request: Request, call_next):
-    allow_origin = False
-    origin = request.headers.get('origin', None)
-    # Log the origin
-    with open("origins.txt", "a") as file:
-        file.write(f"Origin: {origin}\n")
-
-
-    if origin:
-        if '.github.io' in origin or '.repl.co' in origin or origin.startswith('https://replit.com'):
-            allow_origin = True
-
-    if allow_origin:
-        response = await call_next(request)
-    else:
-        response = Response(content="CORS not allowed", status_code=400)
-
-    return response
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*'],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.middleware('http')(custom_allow_origin)
-'''
 
 def similar(s1, s2, threshold=0.6):
     similarity_ratio = SequenceMatcher(None, s1, s2).ratio()
