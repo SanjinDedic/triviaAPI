@@ -1,0 +1,1542 @@
+[
+    {
+        "id": 1,
+        "type": "multiple_choice",
+        "question": "Who is known as the father of computer science?",
+        "options": [
+            "Charles Babbage",
+            "Alan Turing",
+            "John von Neumann",
+            "Ada Lovelace"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Charles_Babbage_1860.jpg"
+    },
+    {
+        "id": 2,
+        "type": "short_answer",
+        "question": "What does CPU stand for?",
+        "answer": "Central Processing Unit",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 3,
+        "type": "multiple_choice",
+        "question": "Which of the following is the first commercially successful video game?",
+        "options": [
+            "Tennis for Two",
+            "Pong",
+            "Space Invaders",
+            "Pac-Man"
+        ],
+        "answer": "b",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Pong.png?20060521134835"
+    },
+    {
+        "id": 4,
+        "type": "short_answer",
+        "question": "What was the name of the first electronic general-purpose computer?",
+        "answer": "ENIAC",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 5,
+        "type": "multiple_choice",
+        "question": "Which programming language was developed by James Gosling at Sun Microsystems?",
+        "options": [
+            "Python",
+            "Java",
+            "C++",
+            "Ruby"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Java_Logo.svg/1200px-Java_Logo.svg.png"
+    },
+    {
+        "id": 6,
+        "type": "short_answer",
+        "question": "What does the acronym RAM stand for?",
+        "answer": "Random Access Memory",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 7,
+        "type": "multiple_choice",
+        "question": "Which company was founded by Bill Gates and Paul Allen?",
+        "options": [
+            "Apple",
+            "Microsoft",
+            "IBM",
+            "Hewlett-Packard"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png"
+    },
+    {
+        "id": 8,
+        "type": "short_answer",
+        "question": "What does the acronym URL stand for?",
+        "answer": "Uniform Resource Locator",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 9,
+        "type": "multiple_choice",
+        "question": "What was the first web browser invented by Sir Tim Berners-Lee?",
+        "options": [
+            "Mosaic",
+            "Netscape Navigator",
+            "Internet Explorer",
+            "WorldWideWeb"
+        ],
+        "answer": "d",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sir_Tim_Berners-Lee_%28cropped%29.jpg/800px-Sir_Tim_Berners-Lee_%28cropped%29.jpg"
+    },
+    {
+        "id": 10,
+        "type": "short_answer",
+        "question": "What is the name of the scientist who invented the World Wide Web?",
+        "answer": "Tim Berners-Lee",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 11,
+        "type": "multiple_choice",
+        "question": "What is the largest planet in our solar system?",
+        "options": [
+            "Earth",
+            "Jupiter",
+            "Saturn",
+            "Mars"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg"
+    },
+    {
+        "id": 12,
+        "type": "short_answer",
+        "question": "What is the name of the fifth planet from the Sun?",
+        "answer": "Jupiter",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 13,
+        "type": "multiple_choice",
+        "question": "Which planet is known as the 'Red Planet'?",
+        "options": [
+            "Venus",
+            "Mars",
+            "Jupiter",
+            "Mercury"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/1200px-OSIRIS_Mars_true_color.jpg"
+    },
+    {
+        "id": 14,
+        "type": "short_answer",
+        "question": "What is the smallest planet in our solar system?",
+        "answer": "Mercury",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 15,
+        "type": "multiple_choice",
+        "question": "Which planet has the longest day in our solar system?",
+        "options": [
+            "Venus",
+            "Jupiter",
+            "Earth",
+            "Neptune"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/1200px-Venus-real_color.jpg"
+    },
+    {
+        "id": 16,
+        "type": "short_answer",
+        "question": "What is the name of the largest moon of Saturn?",
+        "answer": "Titan",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 17,
+        "type": "multiple_choice",
+        "question": "Which of these planets does not have any moons?",
+        "options": [
+            "Venus",
+            "Mars",
+            "Jupiter",
+            "Saturn"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/1200px-Venus-real_color.jpg"
+    },
+    {
+        "id": 18,
+        "type": "short_answer",
+        "question": "Which planet has the most moons in our solar system?",
+        "answer": "Jupiter",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 19,
+        "type": "multiple_choice",
+        "question": "Which celestial object is known as Earth's natural satellite?",
+        "options": [
+            "The Moon",
+            "Phobos",
+            "Titan",
+            "Ganymede"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/1200px-FullMoon2010.jpg"
+    },
+    {
+        "id": 20,
+        "type": "short_answer",
+        "question": "What is the name of the second largest planet in our solar system?",
+        "answer": "Saturn",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 21,
+        "type": "multiple_choice",
+        "question": "Which famous physicist developed the theory of general relativity?",
+        "options": [
+            "Isaac Newton",
+            "Niels Bohr",
+            "Albert Einstein",
+            "James Clerk Maxwell"
+        ],
+        "answer": "c",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg"
+    },
+    {
+        "id": 22,
+        "type": "short_answer",
+        "question": "What is the SI unit of force?",
+        "answer": "Newton",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 23,
+        "type": "multiple_choice",
+        "question": "What type of particles are found in the nucleus of an atom?",
+        "options": [
+            "Protons and neutrons",
+            "Protons and electrons",
+            "Neutrons and electrons",
+            "Protons, neutrons, and electrons"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Atom_diagram.svg/1280px-Atom_diagram.svg.png"
+    },
+    {
+        "id": 24,
+        "type": "short_answer",
+        "question": "What is the speed of light in a vacuum?",
+        "answer": "299,792,458 meters per second",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 25,
+        "type": "multiple_choice",
+        "question": "Which of these is a fundamental force of nature?",
+        "options": [
+            "Friction",
+            "Tension",
+            "Gravitational force",
+            "Centripetal force"
+        ],
+        "answer": "c",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Earth-moon.jpg/1280px-Earth-moon.jpg"
+    },
+    {
+        "id": 26,
+        "type": "short_answer",
+        "question": "What is the energy possessed by an object due to its motion called?",
+        "answer": "Kinetic energy",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 27,
+        "type": "multiple_choice",
+        "question": "What is the study of the relationship between heat, work, and energy called?",
+        "options": [
+            "Quantum mechanics",
+            "Thermodynamics",
+            "Electromagnetism",
+            "Relativity"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Thermodynamics_icon.svg/1200px-Thermodynamics_icon.svg.png"
+    },
+    {
+        "id": 28,
+        "type": "short_answer",
+        "question": "What is the name of the device used to measure electric current?",
+        "answer": "Ammeter",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 29,
+        "type": "multiple_choice",
+        "question": "Which scientist is famous for his uncertainty principle?",
+        "options": [
+            "Albert Einstein",
+            "Werner Heisenberg",
+            "Niels Bohr",
+            "Erwin Schr\u00c3\u00b6dinger"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Werner_Heisenberg_1933.jpg/1280px-Werner_Heisenberg_1933.jpg"
+    },
+    {
+        "id": 30,
+        "type": "short_answer",
+        "question": "What is the unit of measurement for electric resistance?",
+        "answer": "Ohm",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 31,
+        "type": "multiple_choice",
+        "question": "Who was the first human to travel into space?",
+        "options": [
+            "Neil Armstrong",
+            "Yuri Gagarin",
+            "John Glenn",
+            "Alan Shepard"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Yuri_Gagarin_in_Sweden.jpg/800px-Yuri_Gagarin_in_Sweden.jpg"
+    },
+    {
+        "id": 32,
+        "type": "short_answer",
+        "question": "What was the name of the first artificial Earth satellite?",
+        "answer": "Sputnik 1",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 33,
+        "type": "multiple_choice",
+        "question": "Which space probe was the first to visit all four gas giant planets?",
+        "options": [
+            "Voyager 1",
+            "Voyager 2",
+            "Pioneer 10",
+            "Pioneer 11"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Voyager_1_entering_heliosheath.jpg/1280px-Voyager_1_entering_heliosheath.jpg"
+    },
+    {
+        "id": 34,
+        "type": "short_answer",
+        "question": "What is the name of the first human-made object to leave the solar system?",
+        "answer": "Voyager 1",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 35,
+        "type": "multiple_choice",
+        "question": "Who was the first woman in space?",
+        "options": [
+            "Valentina Tereshkova",
+            "Sally Ride",
+            "Mae Jemison",
+            "Peggy Whitson"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Tereshkova-1969.jpg/800px-Tereshkova-1969.jpg"
+    },
+    {
+        "id": 36,
+        "type": "short_answer",
+        "question": "What was the name of the first successful Mars rover?",
+        "answer": "Sojourner",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 37,
+        "type": "multiple_choice",
+        "question": "What was the name of the NASA program that landed the first humans on the Moon?",
+        "options": [
+            "Mercury",
+            "Gemini",
+            "Apollo",
+            "Space Shuttle"
+        ],
+        "answer": "c",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Apollo_11_first_step.jpg/1280px-Apollo_11_first_step.jpg"
+    },
+    {
+        "id": 38,
+        "type": "short_answer",
+        "question": "What is the name of the telescope launched by NASA in 1990 that has made numerous important discoveries?",
+        "answer": "Hubble Space Telescope",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 39,
+        "type": "multiple_choice",
+        "question": "Which country landed the first rover on Mars?",
+        "options": [
+            "United States",
+            "Russia",
+            "China",
+            "India"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mars_Pathfinder_and_Sojourner.jpg/1280px-Mars_Pathfinder_and_Sojourner.jpg"
+    },
+    {
+        "id": 40,
+        "type": "short_answer",
+        "question": "What is the name of the reusable spaceplane developed by SpaceX?",
+        "answer": "Starship",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 41,
+        "type": "multiple_choice",
+        "question": "Who is known as the father of microbiology?",
+        "options": [
+            "Robert Koch",
+            "Louis Pasteur",
+            "Antonie van Leeuwenhoek",
+            "Alexander Fleming"
+        ],
+        "answer": "c",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Antonie_van_Leeuwenhoek_%281632-1723%29.Restored.jpg/800px-Antonie_van_Leeuwenhoek%281632-1723%29._Restored.jpg"
+    },
+    {
+        "id": 42,
+        "type": "short_answer",
+        "question": "What is the term used to describe bacteria with a spherical shape?",
+        "answer": "Cocci",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 43,
+        "type": "multiple_choice",
+        "question": "Which of the following is a single-celled organism with a nucleus?",
+        "options": [
+            "Bacteria",
+            "Archaea",
+            "Protozoa",
+            "Virus"
+        ],
+        "answer": "c",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Paramecium_schematic.svg/1280px-Paramecium_schematic.svg.png"
+    },
+    {
+        "id": 44,
+        "type": "short_answer",
+        "question": "What is the process by which bacteria divide and reproduce?",
+        "answer": "Binary fission",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 45,
+        "type": "multiple_choice",
+        "question": "What type of organism causes malaria?",
+        "options": [
+            "Bacteria",
+            "Virus",
+            "Fungus",
+            "Protozoan"
+        ],
+        "answer": "d",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Plasmodium_falciparum_01.png/1280px-Plasmodium_falciparum_01.png"
+    },
+    {
+        "id": 46,
+        "type": "short_answer",
+        "question": "What are the protein molecules produced by the immune system to recognize and neutralize harmful substances?",
+        "answer": "Antibodies",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 47,
+        "type": "multiple_choice",
+        "question": "Which of the following is a characteristic of Gram-negative bacteria?",
+        "options": [
+            "Thick peptidoglycan layer",
+            "Thin peptidoglycan layer",
+            "No cell wall",
+            "No cell membrane"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gram_stain_types.svg/1280px-Gram_stain_types.svg.png"
+    },
+    {
+        "id": 48,
+        "type": "short_answer",
+        "question": "Which technique is used to visualize bacteria by staining them based on the properties of their cell walls?",
+        "answer": "Gram staining",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 49,
+        "type": "multiple_choice",
+        "question": "Which of the following microorganisms can convert atmospheric nitrogen into a usable form for plants?",
+        "options": [
+            "Nitrogen-fixing bacteria",
+            "Mycorrhizal fungi",
+            "Photosynthetic bacteria",
+            "Algae"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Nodules.JPG/1280px-Nodules.JPG"
+    },
+    {
+        "id": 50,
+        "type": "short_answer",
+        "question": "What is the name of the structure that some bacteria use for locomotion?",
+        "answer": "Flagella",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 51,
+        "type": "multiple_choice",
+        "question": "Who is known as the father of Western philosophy?",
+        "options": [
+            "Socrates",
+            "Plato",
+            "Aristotle",
+            "Pythagoras"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Socrates_Louvre.jpg/800px-Socrates_Louvre.jpg"
+    },
+    {
+        "id": 52,
+        "type": "short_answer",
+        "question": "What is the name of Plato's most famous work?",
+        "answer": "The Republic",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 53,
+        "type": "multiple_choice",
+        "question": "Which philosopher was a student of Socrates and later became the teacher of Aristotle?",
+        "options": [
+            "Plato",
+            "Parmenides",
+            "Epicurus",
+            "Zeno of Elea"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Plato_Silanion_Musei_Capitolini_MC1377.jpg/800px-Plato_Silanion_Musei_Capitolini_MC1377.jpg"
+    },
+    {
+        "id": 54,
+        "type": "short_answer",
+        "question": "What is the name of the ancient Greek school of thought founded by Epicurus?",
+        "answer": "Epicureanism",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 55,
+        "type": "multiple_choice",
+        "question": "Which ancient Greek philosopher is known for his paradoxes and arguments against the concept of motion?",
+        "options": [
+            "Zeno of Elea",
+            "Heraclitus",
+            "Democritus",
+            "Anaxagoras"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Zeno_of_Elea_by_Bruno.jpg/800px-Zeno_of_Elea_by_Bruno.jpg"
+    },
+    {
+        "id": 56,
+        "type": "short_answer",
+        "question": "Which philosopher is known for his doctrine that reality is constantly changing and that everything is in a state of flux?",
+        "answer": "Heraclitus",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 57,
+        "type": "multiple_choice",
+        "question": "Who is known as the father of geometry?",
+        "options": [
+            "Euclid",
+            "Archimedes",
+            "Pythagoras",
+            "Thales"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Euklid-von-Alexandria_1.jpg/800px-Euklid-von-Alexandria_1.jpg"
+    },
+    {
+        "id": 58,
+        "type": "short_answer",
+        "question": "What is the name of the ancient Greek philosopher who formulated the atomic theory of the universe?",
+        "answer": "Democritus",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 59,
+        "type": "multiple_choice",
+        "question": "Which ancient Greek philosopher developed a philosophy called the Four Causes?",
+        "options": [
+            "Anaximander",
+            "Aristotle",
+            "Pythagoras",
+            "Socrates"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/800px-Aristotle_Altemps_Inv8575.jpg"
+    },
+    {
+        "id": 60,
+        "type": "short_answer",
+        "question": "What was the name of the philosophical school founded by Plato in Athens?",
+        "answer": "The Academy",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 61,
+        "type": "multiple_choice",
+        "question": "Who is the author of the science fiction novel '1984'?",
+        "options": [
+            "Aldous Huxley",
+            "George Orwell",
+            "Ray Bradbury",
+            "Philip K. Dick"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/George_Orwell_press_photo.jpg/800px-George_Orwell_press_photo.jpg"
+    },
+    {
+        "id": 62,
+        "type": "short_answer",
+        "question": "What is the title of the dystopian novel written by Aldous Huxley?",
+        "answer": "Brave New World",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 63,
+        "type": "multiple_choice",
+        "question": "Which movie features a character named Neo who discovers the true nature of his reality?",
+        "options": [
+            "The Matrix",
+            "Inception",
+            "Blade Runner",
+            "Avatar"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg"
+    },
+    {
+        "id": 64,
+        "type": "short_answer",
+        "question": "Who is the author of the science fiction novel 'Fahrenheit 451'?",
+        "answer": "Ray Bradbury",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 65,
+        "type": "multiple_choice",
+        "question": "Which science fiction film series features a character named Ellen Ripley who battles against an extraterrestrial species?",
+        "options": [
+            "Alien",
+            "Star Wars",
+            "Star Trek",
+            "The Terminator"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/c/c3/Alien_movie_poster.jpg"
+    },
+    {
+        "id": 66,
+        "type": "short_answer",
+        "question": "What is the name of the protagonist in the movie 'The Terminator' played by Arnold Schwarzenegger?",
+        "answer": "The Terminator",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 67,
+        "type": "multiple_choice",
+        "question": "What is the title of the 1965 science fiction novel by Frank Herbert, set in the desert planet Arrakis?",
+        "options": [
+            "Dune",
+            "Foundation",
+            "Neuromancer",
+            "The Left Hand of Darkness"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Dune_Book_Cover.jpg/800px-Dune_Book_Cover.jpg"
+    },
+    {
+        "id": 68,
+        "type": "short_answer",
+        "question": "Who directed the 1982 science fiction film 'Blade Runner'?",
+        "answer": "Ridley Scott",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 69,
+        "type": "multiple_choice",
+        "question": "Which science fiction author wrote the 'Foundation' series?",
+        "options": [
+            "Isaac Asimov",
+            "Arthur C. Clarke",
+            "Robert A. Heinlein",
+            "Ursula K. Le Guin"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Isaak_Asimov_on_Throne.png/800px-Isaak_Asimov_on_Throne.png"
+    },
+    {
+        "id": 70,
+        "type": "short_answer",
+        "question": "What is the name of the artificial intelligence computer system in the movie '2001: A Space Odyssey'?",
+        "answer": "HAL 9000",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 71,
+        "type": "multiple_choice",
+        "question": "Which of the following is a science fiction film directed by Christopher Nolan?",
+        "options": [
+            "Interstellar",
+            "The Matrix",
+            "Inception",
+            "Arrival"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg"
+    },
+    {
+        "id": 72,
+        "type": "short_answer",
+        "question": "Who is the author of the 1969 science fiction novel 'Slaughterhouse-Five'?",
+        "answer": "Kurt Vonnegut",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 73,
+        "type": "multiple_choice",
+        "question": "Which 2016 science fiction film is about a linguist who is hired to communicate with extraterrestrial beings?",
+        "options": [
+            "Arrival",
+            "Interstellar",
+            "Ex Machina",
+            "The Martian"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"
+    },
+    {
+        "id": 74,
+        "type": "short_answer",
+        "question": "Who is the director of the 2013 science fiction film 'Gravity'?",
+        "answer": "Alfonso Cuar\u00c3\u00b3n",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 75,
+        "type": "multiple_choice",
+        "question": "What is the title of the 1953 science fiction novel by Arthur C. Clarke, which was later adapted into a film directed by Stanley Kubrick?",
+        "options": [
+            "2001: A Space Odyssey",
+            "Childhood's End",
+            "Rendezvous with Rama",
+            "The City and the Stars"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/thumb/3/38/Space_Odyssey_novel_cover.jpg/800px-Space_Odyssey_novel_cover.jpg"
+    },
+    {
+        "id": 76,
+        "type": "short_answer",
+        "question": "What is the name of the author who wrote the 'Ender's Game' series?",
+        "answer": "Orson Scott Card",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 77,
+        "type": "multiple_choice",
+        "question": "Which 1997 science fiction film is set in a future society where people are genetically engineered and ranked by their DNA?",
+        "options": [
+            "Gattaca",
+            "Equilibrium",
+            "A.I. Artificial Intelligence",
+            "The Island"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/b/bb/Gataca_movie_poster_B.jpg"
+    },
+    {
+        "id": 78,
+        "type": "short_answer",
+        "question": "What is the title of the 1984 science fiction novel by William Gibson, which coined the term 'cyberspace'?",
+        "answer": "Neuromancer",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 79,
+        "type": "multiple_choice",
+        "question": "Which 2009 science fiction film, directed by James Cameron, features the alien world of Pandora?",
+        "options": [
+            "Avatar",
+            "District 9",
+            "Star Trek",
+            "Moon"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/b/b0/Avatar-Teaser-Poster.jpg"
+    },
+    {
+        "id": 80,
+        "type": "short_answer",
+        "question": "What is the name of the 1960 science fiction novel by Walter M. Miller Jr., set in a post-apocalyptic world?",
+        "answer": "A Canticle for Leibowitz",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 81,
+        "type": "multiple_choice",
+        "question": "Who is credited with the discovery of the structure of DNA?",
+        "options": [
+            "Charles Darwin",
+            "Marie Curie",
+            "Isaac Newton",
+            "James Watson and Francis Crick"
+        ],
+        "answer": "d",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Watson-Crick-1KX5_on_3dna_27.pdb.png"
+    },
+    {
+        "id": 82,
+        "type": "short_answer",
+        "question": "What is the name of the scientist who discovered penicillin?",
+        "answer": "Alexander Fleming",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 83,
+        "type": "multiple_choice",
+        "question": "Which scientist formulated the laws of motion and universal gravitation?",
+        "options": [
+            "Galileo Galilei",
+            "Isaac Newton",
+            "Albert Einstein",
+            "Nikola Tesla"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/GodfreyKneller-IsaacNewton-1689.jpg/800px-GodfreyKneller-IsaacNewton-1689.jpg"
+    },
+    {
+        "id": 84,
+        "type": "short_answer",
+        "question": "What is the name of the physicist who first theorized the existence of black holes?",
+        "answer": "John Michell",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 85,
+        "type": "multiple_choice",
+        "question": "Who is known for her discovery of radioactivity and the elements polonium and radium?",
+        "options": [
+            "Marie Curie",
+            "Rosalind Franklin",
+            "Dorothy Hodgkin",
+            "Lise Meitner"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Marie_Curie_1920.jpg/800px-Marie_Curie_1920.jpg"
+    },
+    {
+        "id": 86,
+        "type": "short_answer",
+        "question": "What is the name of the vaccine that was developed by Jonas Salk in the 1950s to combat polio?",
+        "answer": "Inactivated Polio Vaccine (IPV)",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 87,
+        "type": "multiple_choice",
+        "question": "Who is credited with the discovery of the electron?",
+        "options": [
+            "J.J. Thomson",
+            "Ernest Rutherford",
+            "Niels Bohr",
+            "John Dalton"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/J.J_Thomson.jpg/800px-J.J_Thomson.jpg"
+    },
+    {
+        "id": 88,
+        "type": "short_answer",
+        "question": "What is the name of the process by which plants convert sunlight into energy?",
+        "answer": "Photosynthesis",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 89,
+        "type": "multiple_choice",
+        "question": "Which scientist is credited with the discovery of the process of natural selection?",
+        "options": [
+            "Charles Darwin",
+            "Gregor Mendel",
+            "Louis Pasteur",
+            "Carl Linnaeus"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Charles_Darwin_seated_crop.jpg/800px-Charles_Darwin_seated_crop.jpg"
+    },
+    {
+        "id": 90,
+        "type": "short_answer",
+        "question": "What is the name of the 17th-century astronomer who discovered the four largest moons of Jupiter?",
+        "answer": "Galileo Galilei",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 91,
+        "type": "multiple_choice",
+        "question": "What is Nikola Tesla's nationality?",
+        "options": [
+            "Serbian-American",
+            "Russian",
+            "British",
+            "German"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG"
+    },
+    {
+        "id": 92,
+        "type": "short_answer",
+        "question": "In what year was Nikola Tesla born?",
+        "answer": "1856",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 93,
+        "type": "multiple_choice",
+        "question": "Which invention is Nikola Tesla best known for?",
+        "options": [
+            "Telephone",
+            "Light Bulb",
+            "Alternating Current (AC) Electrical System",
+            "Radio"
+        ],
+        "answer": "c",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Tesla_colorado_adjusted.jpg"
+    },
+    {
+        "id": 94,
+        "type": "short_answer",
+        "question": "What is the name of the famous laboratory where Tesla conducted many of his experiments?",
+        "answer": "Wardenclyffe",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 95,
+        "type": "multiple_choice",
+        "question": "Which inventor was Tesla's main rival during the 'War of the Currents'?",
+        "options": [
+            "Alexander Graham Bell",
+            "Thomas Edison",
+            "George Westinghouse",
+            "Samuel Morse"
+        ],
+        "answer": "b",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Thomas_Edison2.jpg/800px-Thomas_Edison2.jpg"
+    },
+    {
+        "id": 96,
+        "type": "short_answer",
+        "question": "What is the name of the unit of magnetic flux density named after Tesla?",
+        "answer": "Tesla (T)",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 97,
+        "type": "multiple_choice",
+        "question": "Which of the following is a concept proposed by Tesla but never fully realized?",
+        "options": [
+            "Wireless Power Transmission",
+            "Teleportation",
+            "Time Travel",
+            "Perpetual Motion"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Wardenclyffe_Tower.jpg/800px-Wardenclyffe_Tower.jpg"
+    },
+    {
+        "id": 98,
+        "type": "short_answer",
+        "question": "In what city did Tesla spend most of his adult life and career?",
+        "answer": "New York City",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 99,
+        "type": "multiple_choice",
+        "question": "Which of the following is a device that Tesla invented for the production of high-frequency alternating currents?",
+        "options": [
+            "Tesla Coil",
+            "Induction Motor",
+            "Dynamo",
+            "Transformer"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Tesla_coil_3.svg/800px-Tesla_coil_3.svg.png"
+    },
+    {
+        "id": 100,
+        "type": "short_answer",
+        "question": "What is the name of the falls where Tesla's alternating current system was first used to generate electricity on a large scale?",
+        "answer": "Niagara Falls",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 101,
+        "type": "multiple_choice",
+        "question": "Which animal can be used to predict earthquakes?",
+        "options": [
+            "Cats",
+            "Dogs",
+            "Snakes",
+            "Cows"
+        ],
+        "answer": "c",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Earthquake.jpg"
+    },
+    {
+        "id": 102,
+        "type": "short_answer",
+        "question": "What programming language is named after a British comedy group?",
+        "answer": "Python",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 103,
+        "type": "multiple_choice",
+        "question": "Which of the following was once an actual computer bug?",
+        "options": [
+            "A moth",
+            "A spider",
+            "A beetle",
+            "A fly"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/8a/H96566k.jpg"
+    },
+    {
+        "id": 104,
+        "type": "short_answer",
+        "question": "What is the name of the unit of frequency named after a Danish scientist who was famous for his pranks?",
+        "answer": "Hertz",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 105,
+        "type": "multiple_choice",
+        "question": "Which of the following is a real energy source used in some parts of the world?",
+        "options": [
+            "Cow dung",
+            "Penguin droppings",
+            "Bread crumbs",
+            "Used chewing gum"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Cow_dung_cakes_%28Gumla%2C_India%29.jpg/800px-Cow_dung_cakes_%28Gumla%2C_India%29.jpg"
+    },
+    {
+        "id": 106,
+        "type": "short_answer",
+        "question": "What is the name of the phenomenon where people perceive patterns or connections in random or meaningless data?",
+        "answer": "Apophenia",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 107,
+        "type": "multiple_choice",
+        "question": "Which computer language's name was inspired by a coffee-producing region?",
+        "options": [
+            "Java",
+            "Python",
+            "C++",
+            "Ruby"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Java_Logo.svg/1200px-Java_Logo.svg.png"
+    },
+    {
+        "id": 108,
+        "type": "short_answer",
+        "question": "What is the name of the Internet's unofficial mascot, a creature with the body of a cat and the face of a human?",
+        "answer": "Longcat",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 117,
+        "type": "multiple_choice",
+        "question": "What did ancient Egyptians use to keep their wigs in place?",
+        "options": [
+            "Beeswax",
+            "Olive oil",
+            "Animal fat",
+            "Honey"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/6/60/Egyptian_wig_MET_LC-32_1_181_EGDP010083.jpg"
+    },
+    {
+        "id": 118,
+        "type": "short_answer",
+        "question": "Which famous philosopher is known for dying by laughing at his own joke?",
+        "answer": "Chrysippus",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 119,
+        "type": "multiple_choice",
+        "question": "Which U.S. president was known for skinny-dipping in the Potomac River?",
+        "options": [
+            "Abraham Lincoln",
+            "Theodore Roosevelt",
+            "John Quincy Adams",
+            "Richard Nixon"
+        ],
+        "answer": "c",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/6/64/John_Quincy_Adams.jpeg"
+    },
+    {
+        "id": 120,
+        "type": "short_answer",
+        "question": "What was the name of the ancient Greek philosopher who lived in a barrel?",
+        "answer": "Diogenes",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 121,
+        "type": "multiple_choice",
+        "question": "Which ancient civilization invented the first vending machine?",
+        "options": [
+            "Ancient Greece",
+            "Ancient Rome",
+            "Ancient Egypt",
+            "Ancient China"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/83/Alexandre_Herculano_%28cropped%29.jpg"
+    },
+    {
+        "id": 122,
+        "type": "short_answer",
+        "question": "What unusual method did the philosopher Immanuel Kant use to keep his thoughts organized?",
+        "answer": "Tying knots in a string",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 123,
+        "type": "multiple_choice",
+        "question": "What was the bizarre method Julius Caesar used to send secret messages?",
+        "options": [
+            "Shaving a messenger's head",
+            "Writing on animal hides",
+            "Embedding messages in food",
+            "Using pigeons"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/1/14/Julius_Caesar_%28Rome%29.jpg"
+    },
+    {
+        "id": 124,
+        "type": "short_answer",
+        "question": "Which ancient Greek philosopher is said to have died by holding his breath in a fit of anger?",
+        "answer": "Empedocles",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 125,
+        "type": "multiple_choice",
+        "question": "Which ruler allegedly appointed his horse to a high-ranking government position?",
+        "options": [
+            "Caligula",
+            "Genghis Khan",
+            "Napoleon Bonaparte",
+            "King Henry VIII"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/1/10/Caligula_MA_1249.jpg"
+    },
+    {
+        "id": 126,
+        "type": "short_answer",
+        "question": "What did the philosopher S\u00c3\u00b8ren Kierkegaard nickname his walking cane?",
+        "answer": "The Crucifier of Boredom",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 127,
+        "type": "multiple_choice",
+        "question": "What unusual method did ancient Greek athletes use to enhance their performance?",
+        "options": [
+            "Eating raw garlic",
+            "Ingesting powdered bull testicles",
+            "Wearing lucky charms",
+            "Rubbing honey on their bodies"
+        ],
+        "answer": "b",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/85/Pankration_Fighter_Sculpture_%28cropped%29.jpg"
+    },
+    {
+        "id": 128,
+        "type": "short_answer",
+        "question": "Which philosopher's last words were reportedly a request for a glass of wine?",
+        "answer": "Jean-Jacques Rousseau",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 129,
+        "type": "multiple_choice",
+        "question": "What fashion trend did the philosopher Socrates reportedly dislike?",
+        "options": [
+            "Sandals",
+            "Long hair",
+            "Tunics",
+            "Flowing robes"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/89/Socrates_Louvre.jpg"
+    },
+    {
+        "id": 130,
+        "type": "short_answer",
+        "question": "What unusual method did the philosopher John Locke recommend for remembering dreams?",
+        "answer": "Sleeping with a stone under the pillow",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 131,
+        "type": "multiple_choice",
+        "question": "Which famous scientist reportedly wore a wig made of silver to protect his head from radiation?",
+        "options": [
+            "Marie Curie",
+            "Albert Einstein",
+            "Niels Bohr",
+            "Isaac Newton"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/2/2b/1924_Passport_photo_of_Madame_Curie.jpg"
+    },
+    {
+        "id": 132,
+        "type": "short_answer",
+        "question": "Which philosopher had a pet bear while attending university?",
+        "answer": "Gottfried Wilhelm Leibniz",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 133,
+        "type": "multiple_choice",
+        "question": "What is the meaning of '1337' in hacker slang?",
+        "options": [
+            "Error code",
+            "Elitism",
+            "Cybersecurity",
+            "Virus"
+        ],
+        "answer": "b",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Leet.png"
+    },
+    {
+        "id": 134,
+        "type": "short_answer",
+        "question": "What is the name of the widely known hacker group that uses a Guy Fawkes mask as its symbol?",
+        "answer": "Anonymous",
+        "points": 40,
+        "image_link": ""
+    },
+    {
+        "id": 135,
+        "type": "multiple_choice",
+        "question": "Which of these is a fictional operating system featured in the movie 'Jurassic Park'?",
+        "options": [
+            "DinoOS",
+            "Unix",
+            "Linux",
+            "Irix"
+        ],
+        "answer": "a",
+        "points": 10,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Jurassic_Park_Tyrannosaurus_Logo.svg"
+    },
+    {
+        "id": 136,
+        "type": "short_answer",
+        "question": "What is the name of the iconic screensaver associated with the '90s hacker culture?",
+        "answer": "The Matrix Digital Rain",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 137,
+        "type": "multiple_choice",
+        "question": "What is the name of the programming language designed as a joke, where the code looks like a Shakespearean play?",
+        "options": [
+            "Brainfuck",
+            "Piet",
+            "Shakespeare",
+            "Whitespace"
+        ],
+        "answer": "c",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Shakespeare.jpg"
+    },
+    {
+        "id": 138,
+        "type": "short_answer",
+        "question": "Which popular hacking tool is named after a dessert?",
+        "answer": "Raspberry Pi",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 139,
+        "type": "multiple_choice",
+        "question": "Which movie features the character 'Neo' who hacks into the Matrix?",
+        "options": [
+            "Hackers",
+            "The Matrix",
+            "Tron",
+            "WarGames"
+        ],
+        "answer": "b",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/The_Matrix_film_poster.jpeg/480px-The_Matrix_film_poster.jpeg"
+    },
+    {
+        "id": 140,
+        "type": "short_answer",
+        "question": "What is the name of the open-source hackable robot toy that can be programmed to perform various tasks?",
+        "answer": "Arduino",
+        "points": 50,
+        "image_link": ""
+    },
+    {
+        "id": 141,
+        "type": "multiple_choice",
+        "question": "What is the name of the popular open-source tool used by hackers for network scanning and security auditing?",
+        "options": [
+            "Nmap",
+            "Kali Linux",
+            "Metasploit",
+            "Aircrack-ng"
+        ],
+        "answer": "a",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/82/Nmap_logo.svg"
+    },
+    {
+        "id": 142,
+        "type": "short_answer",
+        "question": "Which meme features a person wearing sunglasses and the caption 'I'm in'?",
+        "answer": "Hacker Stock Photo",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 143,
+        "type": "multiple_choice",
+        "question": "Which technology company's name is often replaced with 'Skynet' in memes, referring to the AI antagonist from the 'Terminator' series?",
+        "options": [
+            "Apple",
+            "Google",
+            "Microsoft",
+            "IBM"
+        ],
+        "answer": "b",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+    },
+    {
+        "id": 144,
+        "type": "short_answer",
+        "question": "What is the term for a person who hacks as a hobby or for fun, without malicious intent?",
+        "answer": "Script Kiddie",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 145,
+        "type": "multiple_choice",
+        "question": "Which of these programming languages was designed as a joke, using only eight commands?",
+        "options": [
+            "Brainfuck",
+            "Piet",
+            "Shakespeare",
+            "Whitespace"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/8/87/Brainfuck.png"
+    },
+    {
+        "id": 146,
+        "type": "short_answer",
+        "question": "Which text editor, popular among programmers, is humorously referred to as the final boss for a programmer?",
+        "answer": "Vim",
+        "points": 30,
+        "image_link": ""
+    },
+    {
+        "id": 147,
+        "type": "multiple_choice",
+        "question": "Which movie features the character 'David Lightman' who accidentally hacks into a military supercomputer?",
+        "options": [
+            "Hackers",
+            "The Matrix",
+            "Tron",
+            "WarGames"
+        ],
+        "answer": "d",
+        "points": 30,
+        "image_link": "https://upload.wikimedia.org/wikipedia/en/4/4c/WarGames_movie_poster.jpg"
+    },
+    {
+        "id": 148,
+        "type": "short_answer",
+        "question": "What popular command is used in memes to imply an attempt to hack or gain unauthorized access to a system?",
+        "answer": "sudo",
+        "points": 50,
+        "image_link": ""
+    }
+]
