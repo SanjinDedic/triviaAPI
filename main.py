@@ -17,37 +17,36 @@ from typing import Optional
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
-
+logging.info("FastAPI application started")
 app = FastAPI()
+if os.getenv("TESTING") != "True":
+    class CustomCORSMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
+            origin = request.headers.get('origin', None)
 
-class CustomCORSMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
-        origin = request.headers.get('origin', None)
+            with open("origins.txt", "a") as file:
+                file.write(f"Origin: {origin}\n")
+            
+            allow_origin = False
+            if origin:
+                if '.github.io' in origin or '.repl.co' in origin or origin.startswith('https://replit.com'):
+                    allow_origin = True
 
-        with open("origins.txt", "a") as file:
-            file.write(f"Origin: {origin}\n")
-        
-        allow_origin = False
-        if origin:
-            if '.github.io' in origin or '.repl.co' in origin or origin.startswith('https://replit.com'):
-                allow_origin = True
+            if allow_origin:
+                response = await call_next(request)
+            else:
+                response = Response(content="Access not allowed", status_code=403)
 
-        if allow_origin:
-            response = await call_next(request)
-        else:
-            response = Response(content="Access not allowed", status_code=403)
+            return response
 
-        return response
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*'],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.add_middleware(CustomCORSMiddleware)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    app.add_middleware(CustomCORSMiddleware)
 
 # Database function
 def execute_db_query(query, params=()):
