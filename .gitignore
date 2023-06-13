@@ -8,3 +8,4 @@
 .cache
 .local
 .ssh
+database.db
