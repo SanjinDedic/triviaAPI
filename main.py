@@ -1,16 +1,19 @@
-from fastapi import FastAPI, Request, Response
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
-import sqlite3
-import json
 import os
-from typing import Optional
-from fastapi import Depends, FastAPI, HTTPException
+import sqlite3
+import logging
+import random
+from datetime import datetime
+from fastapi import FastAPI, Request, Response, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
 from difflib import SequenceMatcher
 from typing import Optional
+from pydantic import BaseModel
+
+# Set up logging
+logging.basicConfig(filename='app.log', level=logging.INFO,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 app = FastAPI()
 
@@ -21,18 +24,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Database function
+def execute_db_query(query, params=()):
+    try:
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute(query, params)
+        result = c.fetchall()
+        conn.commit()
+    except Exception as e:
+        logging.error("Error occurred when executing database query", exc_info=True)
+        raise e
+    finally:
+        conn.close()
+    return result
+
 def similar(s1, s2, threshold=0.6):
     similarity_ratio = SequenceMatcher(None, s1, s2).ratio()
     return similarity_ratio >= threshold
 
-def update_log(id, team_name, team_answer, correct_answer, score):
-    log_file = os.path.join(os.getcwd(), 'logs', 'log.txt')
-    with open(log_file, 'a') as f:
-        f.write(f"{team_name} submitted {team_answer} for id {id}. Correct answer is {correct_answer}. Current score is {score}.\n")
-
 def random_color():
-    #2/3 colors will have values higher than 130 and 1/3 will be lower than 60
-    import random
     a = random.randint(130, 255)
     b = random.randint(130, 255)
     c = random.randint(0, 60)
@@ -40,10 +51,8 @@ def random_color():
     random.shuffle(rgb)
     return f"rgb({rgb[0]}, {rgb[1]}, {rgb[2]})"
 
-
 class Table(BaseModel):
     name: str
-
 
 class Generator(BaseModel):
     topic: str
@@ -62,7 +71,7 @@ class Answer(BaseModel):
 class Settings(BaseModel):
     authjwt_secret_key: str = "your-secret-key"
 
-# Load the JWT configuration from the Settings mode
+# Load the JWT configuration from the Settings model
 @AuthJWT.load_config
 def get_config():
     return Settings()
@@ -72,51 +81,47 @@ class User(BaseModel):
     team_name: str
     password: str
 
-# Define a User model for login request validation
 @app.get("/test")
 async def test(request: Request):
-      return {"message":"This is a test"}
+      return {"message":"Test from version next"}
 
 @app.get("/get_teams_table")
 async def get_teams_table(table_name: Optional[str] = "grokkers"):
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute(f"SELECT * FROM {table_name}")
-    teams = c.fetchall()
-    conn.close()
+    teams = execute_db_query(f"SELECT * FROM {table_name}")
     return {"teams": teams}
 
-
-#just need to figure out how to get the solved questions list updated in the database
 @app.post("/submit_answer")
 async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
     Authorize.jwt_required()
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute("SELECT * FROM questions WHERE id = ?", (a.id,))
-    question = c.fetchone()
-    if question == None:
-        return {"message": "Question not found"}  
-    elif question[1] == a.answer or similar(question[1], a.answer):
-        print(question[1], a.answer)
-        pts = question[2]
-        print(pts)
-        #update the database table denoted by a.table
-        #add pts to the score for the team and increment the solved questions
-        c.execute(f"SELECT * FROM {a.table} WHERE name = ?", (a.team_name,))
-        team = c.fetchone()
-        solved_questions = team[3]
-        solved_questions += 1
-        score = team[2]
-        score += pts
-        c.execute(f"UPDATE {a.table} SET score = ?, solved_questions = ? WHERE name = ?", (score, solved_questions, a.team_name))
-        conn.commit()
-        update_log(id=a.id, team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=score)
-        return {"message": "Correct"}
-    else:
-        update_log(id=a.id, team_name=a.team_name, team_answer=a.answer, correct_answer=question[1], score=0)
-
-        return {"message": "Incorrect", "correct_answer": question[1]}  
+    
+    try:
+        # Retrieve the question
+        question = execute_db_query("SELECT * FROM questions WHERE id = ?", (a.id, ))
+        if not question:
+            return {"message": "Question not found"}
+        question = question[0]
+        
+        if question[1] == a.answer or similar(question[1], a.answer):
+            pts = question[2]
+            # Retrieve the team data
+            team = execute_db_query("SELECT * FROM {} WHERE name = ?".format(a.table), (a.team_name, ))
+            if not team:
+                return {"message": "Team not found"}
+            team = team[0]
+            
+            # Update the solved questions and score
+            solved_questions = team[3] + 1
+            score = team[2] + pts
+            execute_db_query("UPDATE {} SET score = ?, solved_questions = ? WHERE name = ?".format(a.table), (score, solved_questions, a.team_name))
+            
+            logging.info(f"{a.team_name} submitted {a.answer} for id {a.id}. Correct answer is {question[1]}. Current score is {score}.")
+            return {"message": "Correct"}
+        else:
+            logging.info(f"{a.team_name} submitted {a.answer} for id {a.id}. Correct answer is {question[1]}. Score remains unchanged.")
+            return {"message": "Incorrect", "correct_answer": question[1]}
+    except Exception as e:
+        logging.error("Error occurred when submitting answer", exc_info=True)
+        raise HTTPException(status_code=500, detail="An error occurred when submitting the answer.")
 
 
 @app.post("/quick_signup")  
