@@ -29,7 +29,7 @@ if os.getenv("TESTING") != "True":
             
             allow_origin = False
             if origin:
-                if '.github.io' in origin or '.repl.co' in origin or origin.startswith('https://replit.com'):
+                if 'aitrivia.live' in origin or '.repl.co' in origin or 'cloudfront.net' in origin or origin.startswith('https://replit.com'):
                     allow_origin = True
 
             if allow_origin:
