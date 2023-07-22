@@ -19,6 +19,7 @@ logging.basicConfig(filename='app.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
 logging.info("FastAPI application started")
 app = FastAPI()
+
 if os.getenv("TESTING") != "True":
     class CustomCORSMiddleware(BaseHTTPMiddleware):
         async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
@@ -48,20 +49,24 @@ if os.getenv("TESTING") != "True":
     )
     app.add_middleware(CustomCORSMiddleware)
 
+
 # Database function
-def execute_db_query(query, params=()):
+def execute_db_query(query, params=(), fetchone=False):
     try:
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('comp.db')
         c = conn.cursor()
         c.execute(query, params)
-        result = c.fetchall()
         conn.commit()
+        if fetchone:
+            return c.fetchone()
+        else:
+            return c.fetchall()
     except Exception as e:
         logging.error("Error occurred when executing database query", exc_info=True)
         raise e
     finally:
         conn.close()
-    return result
+
 
 def similar(s1, s2, threshold=0.6):
     similarity_ratio = SequenceMatcher(None, s1, s2).ratio()
@@ -84,6 +89,10 @@ class Generator(BaseModel):
 
 class QuickSignUp(BaseModel):
     name: str
+
+class Signup(BaseModel):
+    team_name: str
+    password: str
 
 class Answer(BaseModel):
     id: str
@@ -118,7 +127,6 @@ async def get_teams_table(table_name: Optional[str] = "grokkers"):
 async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
     if os.getenv("TESTING") != "True":
         Authorize.jwt_required()
-    
     try:
         # Retrieve the question
         question = execute_db_query("SELECT * FROM questions WHERE id = ?", (a.id, ))
@@ -152,18 +160,32 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
 async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
     team_name = team.name
     team_color = random_color()
-    team_password = 'Tldce54342'
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
 
-    #check if team_name is in grokkers table
-    c.execute("SELECT * FROM grokkers WHERE name = ?", (team_name,))
-    existing_team_grokkers = c.fetchone()
+    # Check if team_name is in grokkers table
+    existing_team_grokkers = execute_db_query("SELECT * FROM grokkers WHERE name = ?", (team_name,), fetchone=True)
     if existing_team_grokkers is not None:
         return {"message": "Team already exists"}
 
     # Create a new team
-    c.execute("INSERT INTO grokkers VALUES (?, ?, ?, ?, ?)", (team_name, team_password, 0, 0, random_color())) 
-    conn.commit()
+    execute_db_query("INSERT INTO grokkers VALUES (?, ?, ?, ?, ?)", (team_name, 0, 0, 0, team_color))
+
+    access_token = Authorize.create_access_token(subject=team_name)
+    return {"access_token": access_token}
+
+
+
+@app.post("/signup")
+async def signup(user: Signup, Authorize: AuthJWT = Depends()):
+    team_name = user.team_name
+    password = user.password
+    team_color = random_color()
+
+    # Check if team_name is in teams table
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True)
+    if existing_team is not None:
+        return {"message": "Team already exists"}
+
+    # Create a new team
+    execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", (team_name, password, 0, 0, team_color)) 
     access_token = Authorize.create_access_token(subject=team_name)
     return {"access_token": access_token}
