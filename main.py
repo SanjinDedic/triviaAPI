@@ -51,9 +51,9 @@ if os.getenv("TESTING") != "True":
 
 
 # Database function
-def execute_db_query(query, params=(), fetchone=False):
+def execute_db_query(query, params=(), fetchone=False, db="trivia.db"):
     try:
-        conn = sqlite3.connect('comp.db')
+        conn = sqlite3.connect(db)
         c = conn.cursor()
         c.execute(query, params)
         conn.commit()
@@ -79,6 +79,38 @@ def random_color():
     rgb = [a, b, c]
     random.shuffle(rgb)
     return f"rgb({rgb[0]}, {rgb[1]}, {rgb[2]})"
+
+def get_question(id: str):
+    result = execute_db_query("SELECT * FROM questions WHERE id = ?", (id, ), True)
+    if not result:
+        raise HTTPException(status_code=404, detail="Question not found")
+    return result[0]
+
+
+def get_team(table: str, team_name: str):
+    result = execute_db_query(f"SELECT * FROM {table} WHERE name = ?", (team_name,), True)
+    if not result:
+        raise HTTPException(status_code=404, detail="Team not found")
+    return result[0]
+
+
+def update_team_score(table: str, team_name: str, score: int, solved_questions: int):
+    execute_db_query(
+        f"UPDATE {table} SET score = ?, solved_questions = ? WHERE name = ?", 
+        (score, solved_questions, team_name)
+    )
+
+def log_submission(is_correct: bool, team_name: str, answer: str, id: str, correct_answer: str, score: Optional[int] = None):
+    if is_correct:
+        logging.info(
+            f"{team_name} submitted {answer} for id {id}. Correct answer is {correct_answer}. "
+            f"Current score is {score}."
+        )
+    else:
+        logging.info(
+            f"{team_name} submitted {answer} for id {id}. Correct answer is {correct_answer}. "
+            f"Score remains unchanged."
+        )
 
 class Table(BaseModel):
     name: str
@@ -119,38 +151,32 @@ async def test(request: Request):
       return {"message":"This is a test"}
 
 @app.get("/get_teams_table")
-async def get_teams_table(table_name: Optional[str] = "grokkers"):
+async def get_teams_table(table_name: Optional[str] = "teams"):
     teams = execute_db_query(f"SELECT * FROM {table_name}")
     return {"teams": teams}
 
+
 @app.post("/submit_answer")
-async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
+async def submit_answer(a: Answer, db_name: Optional[str] = "database.db", Authorize: AuthJWT = Depends()):
     if os.getenv("TESTING") != "True":
         Authorize.jwt_required()
     try:
-        # Retrieve the question
-        question = execute_db_query("SELECT * FROM questions WHERE id = ?", (a.id, ))
-        if not question:
-            return {"message": "Question not found"}
-        question = question[0]
-        
-        if question[1] == a.answer or similar(question[1], a.answer):
-            pts = question[2]
-            # Retrieve the team data
-            team = execute_db_query("SELECT * FROM {} WHERE name = ?".format(a.table), (a.team_name, ))
-            if not team:
-                return {"message": "Team not found"}
-            team = team[0]
-            
-            # Update the solved questions and score
+        question = get_question(a.id)
+        is_correct = question[1] == a.answer or similar(question[1], a.answer)
+
+        if is_correct:
+            team = get_team(a.table, a.team_name)
             solved_questions = team[3] + 1
-            score = team[2] + pts
-            execute_db_query("UPDATE {} SET score = ?, solved_questions = ? WHERE name = ?".format(a.table), (score, solved_questions, a.team_name))
-            logging.info(f"{a.team_name} submitted {a.answer} for id {a.id}. Correct answer is {question[1]}. Current score is {score}.")
+            score = team[2] + question[2]
+
+            update_team_score(a.table, a.team_name, score, solved_questions)
+            log_submission(is_correct, a.team_name, a.answer, a.id, question[1], score)
             return {"message": "Correct"}
-        else:
-            logging.info(f"{a.team_name} submitted {a.answer} for id {a.id}. Correct answer is {question[1]}. Score remains unchanged.")
-            return {"message": "Incorrect", "correct_answer": question[1]}
+
+        log_submission(is_correct, a.team_name, a.answer, a.id, question[1])
+        return {"message": "Incorrect", "correct_answer": question[1]}
+    except HTTPException as e:
+        raise e
     except Exception as e:
         logging.error("Error occurred when submitting answer", exc_info=True)
         raise HTTPException(status_code=500, detail="An error occurred when submitting the answer.")
@@ -161,13 +187,12 @@ async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
     team_name = team.name
     team_color = random_color()
 
-    # Check if team_name is in grokkers table
-    existing_team_grokkers = execute_db_query("SELECT * FROM grokkers WHERE name = ?", (team_name,), fetchone=True)
-    if existing_team_grokkers is not None:
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True)
+    if existing_team is not None:
         return {"message": "Team already exists"}
 
     # Create a new team
-    execute_db_query("INSERT INTO grokkers VALUES (?, ?, ?, ?, ?)", (team_name, 0, 0, 0, team_color))
+    execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", (team_name, 0, 0, 0, team_color))
 
     access_token = Authorize.create_access_token(subject=team_name)
     return {"access_token": access_token}
@@ -181,7 +206,7 @@ async def signup(user: Signup, Authorize: AuthJWT = Depends()):
     team_color = random_color()
 
     # Check if team_name is in teams table
-    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True)
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True, db="comp.db")
     if existing_team is not None:
         return {"message": "Team already exists"}
 
