@@ -122,7 +122,7 @@ class Generator(BaseModel):
 class QuickSignUp(BaseModel):
     name: str
 
-class Signup(BaseModel):
+class Signin(BaseModel):
     team_name: str
     password: str
 
@@ -168,9 +168,9 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
     try:
         correct_ans, question_pts = get_question(id=a.id, db=a.db)[2:4]
+        score, attempted_qs, solved_qs  = get_team(team_name=a.team_name, db=a.db)[1:4]
         is_correct = a.answer == correct_ans or similar(correct_ans, a.answer)
         if is_correct:
-            score, attempted_qs, solved_qs  = get_team(team_name=a.team_name, db=a.db)[1:4]
             score += question_pts
             solved_qs += 1
             attempted_qs += 1
@@ -188,12 +188,12 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         raise HTTPException(status_code=500, detail="An error occurred when submitting the answer.")
 
 
-@app.post("/quick_signup")  
+@app.post("/quick_signup")  #only possible for Trivia
 async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
     team_name = team.name
     team_color = random_color()
 
-    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True)
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True, db="trivia.db")
     if existing_team is not None:
         return {"message": "Team already exists"}
 
@@ -205,22 +205,20 @@ async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
 
 
 
-@app.post("/signup")
-async def signup(user: Signup, Authorize: AuthJWT = Depends()):
+@app.post("/signin")
+async def signup(user: Signin, Authorize: AuthJWT = Depends()):
     team_name = user.team_name
     password = user.password
-    team_color = random_color()
-
     # Check if team_name is in teams table
     existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True, db="comp.db")
     if existing_team is not None:
-        return {"message": "Team already exists"}
-
-    # Create a new team
-    execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", (team_name, password, 0, 0, team_color)) 
-    access_token = Authorize.create_access_token(subject=team_name)
-    return {"access_token": access_token}
-
+        # Check if password is correct
+        if password == existing_team[1]:
+            access_token = Authorize.create_access_token(subject=team_name)
+            return {"access_token": access_token}
+        else:
+            return {"message": "Incorrect password"}
+    return {"message": "Team does not exist check with the organisers"}
 
 if __name__ == "__main__":
     print(execute_db_query("SELECT * FROM questions WHERE id = 11"))

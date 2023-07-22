@@ -36,7 +36,7 @@ with open('questions.json') as f:
 for q in questions:
     print(q)
     print(q['id'], q['answer'], q['points'])
-    c.execute("INSERT INTO questions VALUES (?, ?, ?)", (q['id'], q['answer'], q['points']))
+    c.execute("INSERT INTO questions VALUES (?, ?, ?, ?)", (q['id'], q['question'], q['answer'], q['points']))
 
 c.execute('''
     CREATE TABLE teams(
