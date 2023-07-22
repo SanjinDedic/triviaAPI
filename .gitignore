@@ -11,3 +11,5 @@
 database.db
 app.log
 main_bk2.py
+testing
+.pytest_cache
