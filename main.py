@@ -80,24 +80,24 @@ def random_color():
     random.shuffle(rgb)
     return f"rgb({rgb[0]}, {rgb[1]}, {rgb[2]})"
 
-def get_question(id: str):
-    result = execute_db_query("SELECT * FROM questions WHERE id = ?", (id, ), True)
+def get_question(id: str, db: str = "trivia.db"):
+    result = execute_db_query("SELECT * FROM questions WHERE id = ?", (id, ), fetchone=False, db=db)
     if not result:
         raise HTTPException(status_code=404, detail="Question not found")
     return result[0]
 
 
-def get_team(table: str, team_name: str):
-    result = execute_db_query(f"SELECT * FROM {table} WHERE name = ?", (team_name,), True)
+def get_team(team_name: str, db: str = "trivia.db"):
+    result = execute_db_query(f"SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=False, db=db)
     if not result:
         raise HTTPException(status_code=404, detail="Team not found")
     return result[0]
 
 
-def update_team_score(table: str, team_name: str, score: int, solved_questions: int):
+def update_team_score(team_name: str, score: int, solved_questions: int, db: str = "trivia.db"):
     execute_db_query(
-        f"UPDATE {table} SET score = ?, solved_questions = ? WHERE name = ?", 
-        (score, solved_questions, team_name)
+        f"UPDATE teams SET score = ?, solved_questions = ? WHERE name = ?", 
+        params=(score, solved_questions, team_name),fetchone=False, db=db 
     )
 
 def log_submission(is_correct: bool, team_name: str, answer: str, id: str, correct_answer: str, score: Optional[int] = None):
@@ -130,7 +130,7 @@ class Answer(BaseModel):
     id: str
     answer: str
     team_name: str
-    table: str
+    db: str
 
 # Define a Settings model with the JWT secret key
 class Settings(BaseModel):
@@ -150,31 +150,37 @@ class User(BaseModel):
 async def test(request: Request):
       return {"message":"This is a test"}
 
+
 @app.get("/get_teams_table")
-async def get_teams_table(table_name: Optional[str] = "teams"):
-    teams = execute_db_query(f"SELECT * FROM {table_name}")
+async def get_teams_table():
+    teams = execute_db_query(f"SELECT * FROM teams", db="trivia.db")
     return {"teams": teams}
 
 
+@app.get("/get_comp_table")
+async def get_comp_table():
+    teams = execute_db_query(f"SELECT * FROM teams", db="comp.db")
+    return {"teams": teams}
+
 @app.post("/submit_answer")
-async def submit_answer(a: Answer, db_name: Optional[str] = "database.db", Authorize: AuthJWT = Depends()):
+async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
     if os.getenv("TESTING") != "True":
         Authorize.jwt_required()
     try:
-        question = get_question(a.id)
-        is_correct = question[1] == a.answer or similar(question[1], a.answer)
-
+        correct_ans, question_pts = get_question(id=a.id, db=a.db)[2:4]
+        is_correct = a.answer == correct_ans or similar(correct_ans, a.answer)
         if is_correct:
-            team = get_team(a.table, a.team_name)
-            solved_questions = team[3] + 1
-            score = team[2] + question[2]
-
-            update_team_score(a.table, a.team_name, score, solved_questions)
-            log_submission(is_correct, a.team_name, a.answer, a.id, question[1], score)
+            score, attempted_qs, solved_qs  = get_team(team_name=a.team_name, db=a.db)[1:4]
+            score += question_pts
+            solved_qs += 1
+            attempted_qs += 1
+            update_team_score(team_name=a.team_name, score=score, solved_questions=solved_qs, db=a.db)
+            log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans, score)
             return {"message": "Correct"}
 
-        log_submission(is_correct, a.team_name, a.answer, a.id, question[1])
-        return {"message": "Incorrect", "correct_answer": question[1]}
+        log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
+        update_team_score(team_name=a.team_name, score=score, solved_questions=solved_qs, db=a.db)
+        return {"message": "Incorrect", "correct_answer": correct_ans}
     except HTTPException as e:
         raise e
     except Exception as e:
@@ -214,3 +220,9 @@ async def signup(user: Signup, Authorize: AuthJWT = Depends()):
     execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", (team_name, password, 0, 0, team_color)) 
     access_token = Authorize.create_access_token(subject=team_name)
     return {"access_token": access_token}
+
+
+if __name__ == "__main__":
+    print(execute_db_query("SELECT * FROM questions WHERE id = 11"))
+    print(get_question("11"))
+    print(get_team("Wantirna"))

@@ -6,16 +6,15 @@ from fastapi.testclient import TestClient
 import pytest
 
 # Append the parent directory of the root folder to the system path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+#sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 # Set the working directory to the root folder
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
+#os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 os.environ["TESTING"] = "True"
 from main import app
 
 
 client = TestClient(app)
-
 
 
 def setup_module(module):
@@ -40,7 +39,7 @@ def test_submit_answer():
                            json={"id": "1", 
                                  "answer": "a",
                                  "team_name": "Wantirna",
-                                 "table": "teams"})
+                                 "db": "trivia.db"})
     assert response.status_code == 200
     assert response.json()["message"] == "Correct"
 
