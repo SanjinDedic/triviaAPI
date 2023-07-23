@@ -43,7 +43,6 @@ def test_submit_answer():
     assert response.status_code == 200
     assert response.json()["message"] == "Correct"
 
-
 def test_submit_wrong_answer():
     response = client.post("/submit_answer", 
                            json={"id": "1", 
@@ -68,3 +67,11 @@ def test_signin_fake_team():
     assert response.status_code == 200
     assert response.json()["message"] == "Team does not exist check with the organisers"
 
+def test_reject_repeated_answer(): #need to run twice if db newly created
+    response = client.post("/submit_answer", 
+                           json={"id": "1", 
+                                 "answer": "b",
+                                 "team_name": "Wantirna",
+                                 "db": "comp.db"})
+    assert response.status_code == 200
+    assert response.json()["message"] == "Question already attempted"

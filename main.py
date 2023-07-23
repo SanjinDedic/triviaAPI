@@ -94,11 +94,28 @@ def get_team(team_name: str, db: str = "trivia.db"):
     return result[0]
 
 
-def update_team_score(team_name: str, score: int, solved_questions: int, db: str = "trivia.db"):
+def update_team(name: str, score: int, solved_qs: int, attempted_qs: int, db: str):
     execute_db_query(
-        f"UPDATE teams SET score = ?, solved_questions = ? WHERE name = ?", 
-        params=(score, solved_questions, team_name),fetchone=False, db=db 
+        f"UPDATE teams SET score = ?, solved_questions = ?, attempted_questions = ? WHERE name = ?", 
+        params=(score, solved_qs, attempted_qs, name),fetchone=False, db=db 
     )
+
+def update_attempted_questions(name: str, question_id: str, solved: bool, db: str):
+    execute_db_query(
+        f"INSERT INTO attempted_questions VALUES (?, ?, ?, ?)",
+        params=(name, question_id, datetime.now(), solved), fetchone=False, db=db
+    )
+
+def allowed(name: str, question: str, db: str):
+    if db == "trivia.db":
+        return True
+    else:
+        #check if the question has been attempted by the team
+        result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ? AND question_id = ?", (name, question), fetchone=True, db=db)
+        if result is None:
+            return True
+    return False
+    
 
 def log_submission(is_correct: bool, team_name: str, answer: str, id: str, correct_answer: str, score: Optional[int] = None):
     if is_correct:
@@ -170,22 +187,27 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
         correct_ans, question_pts = get_question(id=a.id, db=a.db)[2:4]
         score, attempted_qs, solved_qs  = get_team(team_name=a.team_name, db=a.db)[1:4]
         is_correct = a.answer == correct_ans or similar(correct_ans, a.answer)
+        if not allowed(name=a.team_name, question=a.id, db=a.db):
+            return {"message": "Question already attempted"}
         if is_correct:
             score += question_pts
             solved_qs += 1
             attempted_qs += 1
-            update_team_score(team_name=a.team_name, score=score, solved_questions=solved_qs, db=a.db)
+            update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db=a.db)
+            update_attempted_questions(name=a.team_name, question_id=a.id, solved=True, db=a.db)
             log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans, score)
             return {"message": "Correct"}
 
         log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
-        update_team_score(team_name=a.team_name, score=score, solved_questions=solved_qs, db=a.db)
+        update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db=a.db)
+        update_attempted_questions(name=a.team_name, question_id=a.id, solved=False, db=a.db)
         return {"message": "Incorrect", "correct_answer": correct_ans}
     except HTTPException as e:
         raise e
     except Exception as e:
         logging.error("Error occurred when submitting answer", exc_info=True)
         raise HTTPException(status_code=500, detail="An error occurred when submitting the answer.")
+
 
 
 @app.post("/quick_signup")  #only possible for Trivia

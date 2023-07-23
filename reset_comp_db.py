@@ -21,12 +21,14 @@ else:
 conn = sqlite3.connect('comp.db')
 c = conn.cursor()
 
+
 c.execute('''
-    CREATE TABLE questions (
-        id text, 
-        answer text, 
-        points integer
-    )
+    CREATE TABLE questions(
+          id text, 
+          content text, 
+          answer text, 
+          points integer
+          )
 ''')
 
 # add the questions to the database by reading the questions.json file
@@ -50,10 +52,11 @@ c.execute('''
 ''')
 
 c.execute('''
-    CREATE TABLE solved_questions (
+    CREATE TABLE attempted_questions (
         team_name text, 
         question_id text, 
         timestamp datetime,
+        solved boolean,
         FOREIGN KEY(team_name) REFERENCES teams(name),
         FOREIGN KEY(question_id) REFERENCES questions(id)
     )
