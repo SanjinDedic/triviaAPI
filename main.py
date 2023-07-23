@@ -197,7 +197,7 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
             update_attempted_questions(name=a.team_name, question_id=a.id, solved=True, db=a.db)
             log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans, score)
             return {"message": "Correct"}
-
+        attempted_qs += 1
         log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
         update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db=a.db)
         update_attempted_questions(name=a.team_name, question_id=a.id, solved=False, db=a.db)
