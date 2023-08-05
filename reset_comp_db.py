@@ -65,7 +65,7 @@ c.execute('''
 
 teams = ['GitTest']
 for team in teams:
-    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, '127.0.0.1', 0, 0, 0, random_color()))
+    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, '127.0.0.8', 0, 0, 0, random_color()))
 
 conn.commit()
 conn.close()
