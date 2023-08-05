@@ -32,7 +32,7 @@ c.execute('''
 ''')
 
 # add the questions to the database by reading the questions.json file
-with open('questions.json') as f:
+with open('comp_questions.json') as f:
     questions = json.load(f)
 
 for q in questions:
@@ -43,7 +43,7 @@ for q in questions:
 c.execute('''
     CREATE TABLE teams(
         name text, 
-        password text, 
+        ip text,
         score integer, 
         attempted_questions integer,
         solved_questions integer, 
@@ -53,7 +53,8 @@ c.execute('''
 
 c.execute('''
     CREATE TABLE attempted_questions (
-        team_name text, 
+        team_name text,
+        ip text,
         question_id text, 
         timestamp datetime,
         solved boolean,
@@ -62,9 +63,9 @@ c.execute('''
     )
 ''')
 
-teams = ['Mount Waverley', 'Box Hill', 'Melbourne High', 'Wantirna', 'GitTest']
+teams = ['GitTest']
 for team in teams:
-    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, 'abc', 0, 0, 0, random_color()))
+    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, '127.0.0.1', 0, 0, 0, random_color()))
 
 conn.commit()
 conn.close()

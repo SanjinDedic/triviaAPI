@@ -20,26 +20,30 @@ logging.basicConfig(filename='app.log', level=logging.INFO,
 logging.info("FastAPI application started")
 app = FastAPI()
 
-if os.getenv("TESTING") != "True":
-    class CustomCORSMiddleware(BaseHTTPMiddleware):
-        async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
-            origin = request.headers.get('origin', None)
+testing = True
 
-            with open("origins.txt", "a") as file:
-                file.write(f"Origin: {origin}\n")
-            
-            allow_origin = False
-            if origin:
-                if 'aitrivia.live' in origin or '.repl.co' in origin or 'cloudfront.net' in origin or origin.startswith('https://replit.com'):
-                    allow_origin = True
+class CustomCORSMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
+        origin = request.headers.get('origin', None)
 
-            if allow_origin:
-                response = await call_next(request)
-            else:
-                response = Response(content="Access not allowed", status_code=403)
+        with open("origins.txt", "a") as file:
+            file.write(f"Origin: {origin}\n")
+        
+        allow_origin = False
+        if origin:
+            if 'aitrivia.live' in origin or '.repl.co' in origin or 'cloudfront.net' in origin or "127" in origin:
+                allow_origin = True
 
-            return response
+        if allow_origin:
+            response = await call_next(request)
+        else:
+            response = Response(content="Access not allowed", status_code=403)
 
+        return response
+
+app = FastAPI()
+
+if testing:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=['*'],
@@ -47,6 +51,7 @@ if os.getenv("TESTING") != "True":
         allow_methods=["*"],
         allow_headers=["*"],
     )
+else:
     app.add_middleware(CustomCORSMiddleware)
 
 
@@ -100,21 +105,32 @@ def update_team(name: str, score: int, solved_qs: int, attempted_qs: int, db: st
         params=(score, solved_qs, attempted_qs, name),fetchone=False, db=db 
     )
 
-def update_attempted_questions(name: str, question_id: str, solved: bool, db: str):
-    execute_db_query(
-        f"INSERT INTO attempted_questions VALUES (?, ?, ?, ?)",
-        params=(name, question_id, datetime.now(), solved), fetchone=False, db=db
-    )
+def update_attempted_questions(name: str, ip: str, question_id: str, solved: bool):
+  execute_db_query(
+    f"INSERT INTO attempted_questions VALUES (?, ?, ?, ?, ?)",
+    params=(name, ip, question_id, datetime.now(), solved), fetchone=False, db="comp.db"
+  )
 
-def allowed(name: str, question: str, db: str):
-    if db == "trivia.db":
-        return True
-    else:
-        #check if the question has been attempted by the team
-        result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ? AND question_id = ?", (name, question), fetchone=True, db=db)
-        if result is None:
-            return True
-    return False
+def security_validation(name: str, question: str):
+    #check if there are multiple teams with the same ip
+    print("checking if allowed")
+    result = execute_db_query("SELECT * FROM teams WHERE name = ?", (name, ), fetchone=True, db="comp.db")
+    if result is None:
+        print("team not found")
+        return {"security error": "team not found"}
+    team_ip = result[1]
+    print("team ip", team_ip)
+    result = execute_db_query("SELECT * FROM teams WHERE ip = ?", (team_ip, ), fetchone=False, db="comp.db")
+
+    if len(result) > 1:
+        print("duplicate ip")
+        return {"security error": "duplicate ip"}
+    #check if the question has been attempted by the team 
+    result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ? AND question_id = ?", (name, question), fetchone=False, db="comp.db")
+    if len(result) > 0:
+        print("question already attempted")
+        return {"security error": "question already attempted"}
+    return True
     
 
 def log_submission(is_correct: bool, team_name: str, answer: str, id: str, correct_answer: str, score: Optional[int] = None):
@@ -139,15 +155,10 @@ class Generator(BaseModel):
 class QuickSignUp(BaseModel):
     name: str
 
-class Signin(BaseModel):
-    team_name: str
-    password: str
-
 class Answer(BaseModel):
     id: str
     answer: str
     team_name: str
-    db: str
 
 # Define a Settings model with the JWT secret key
 class Settings(BaseModel):
@@ -184,23 +195,57 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
     if os.getenv("TESTING") != "True":
         Authorize.jwt_required()
     try:
-        correct_ans, question_pts = get_question(id=a.id, db=a.db)[2:4]
-        score, attempted_qs, solved_qs  = get_team(team_name=a.team_name, db=a.db)[1:4]
+        correct_ans, question_pts = get_question(id=a.id, db="trivia.db" )[2:4]
+        team_ip, score, attempted_qs, solved_qs = get_team(team_name=a.team_name, db="trivia.db")[1:5]
         is_correct = a.answer == correct_ans or similar(correct_ans, a.answer)
-        if not allowed(name=a.team_name, question=a.id, db=a.db):
-            return {"message": "Question already attempted"}
         if is_correct:
             score += question_pts
             solved_qs += 1
             attempted_qs += 1
-            update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db=a.db)
-            update_attempted_questions(name=a.team_name, question_id=a.id, solved=True, db=a.db)
+            update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db="trivia.db")
             log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans, score)
             return {"message": "Correct"}
         attempted_qs += 1
         log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
-        update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db=a.db)
-        update_attempted_questions(name=a.team_name, question_id=a.id, solved=False, db=a.db)
+        update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db="trivia.db")
+        return {"message": "Incorrect", "correct_answer": correct_ans}
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        logging.error("Error occurred when submitting answer", exc_info=True)
+        raise HTTPException(status_code=500, detail="An error occurred when submitting the answer.")
+
+
+@app.post("/submit_answer_sec")
+async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
+    if os.getenv("TESTING") != "True":
+        Authorize.jwt_required()
+    try:
+        correct_ans, question_pts = get_question(id=a.id, db="comp.db")[2:4]
+        print("correct ans found",correct_ans)
+        team_ip, score, attempted_qs, solved_qs = get_team(team_name=a.team_name, db="comp.db")[1:5]
+        print("team fetched")
+        is_correct = a.answer == correct_ans or similar(correct_ans, a.answer)
+        print("correct status", is_correct)
+        security_check = security_validation(a.team_name, a.id)
+        if security_check != True:
+            print("security check failed")
+            return security_check
+        
+        attempted_qs += 1
+        print('reached far')
+        if is_correct:
+            score += question_pts
+            solved_qs += 1
+            log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
+            print('attempting logging')
+            update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db="comp.db")
+            update_attempted_questions(name=a.team_name, ip=team_ip, question_id=a.id, solved=is_correct)
+            return {"message": "Correct"}
+        log_submission(is_correct, a.team_name, a.answer, a.id, correct_ans)
+        update_team(name=a.team_name, score=score, solved_qs=solved_qs, attempted_qs=attempted_qs, db="comp.db")
+        update_attempted_questions(name=a.team_name, ip=team_ip, question_id=a.id, solved=is_correct)
+
         return {"message": "Incorrect", "correct_answer": correct_ans}
     except HTTPException as e:
         raise e
@@ -212,37 +257,33 @@ async def submit_answer(a: Answer, Authorize: AuthJWT = Depends()):
 
 @app.post("/quick_signup")  #only possible for Trivia
 async def quick_signup(team: QuickSignUp, Authorize: AuthJWT = Depends()):
-    team_name = team.name
     team_color = random_color()
 
-    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True, db="trivia.db")
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team.name,), fetchone=True, db="trivia.db")
     if existing_team is not None:
         return {"message": "Team already exists"}
 
     # Create a new team
-    execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", (team_name, 0, 0, 0, team_color))
+    execute_db_query("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team.name,'', 0, 0, 0, team_color))
 
-    access_token = Authorize.create_access_token(subject=team_name)
+    access_token = Authorize.create_access_token(subject=team.name)
     return {"access_token": access_token}
 
 
 
-@app.post("/signin")
-async def signup(user: Signin, Authorize: AuthJWT = Depends()):
-    team_name = user.team_name
-    password = user.password
-    # Check if team_name is in teams table
-    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team_name,), fetchone=True, db="comp.db")
+@app.post("/quick_signup_sec")
+async def quick_signup(team: QuickSignUp, request: Request, Authorize: AuthJWT = Depends()):
+    team_color = random_color()
+    print("team color", team_color)
+    # Get client IP address
+    client_ip = request.client.host
+    print("client ip", client_ip)
+    existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team.name,), fetchone=True, db="comp.db")
     if existing_team is not None:
-        # Check if password is correct
-        if password == existing_team[1]:
-            access_token = Authorize.create_access_token(subject=team_name)
-            return {"access_token": access_token}
-        else:
-            return {"message": "Incorrect password"}
-    return {"message": "Team does not exist check with the organisers"}
+        return {"message": "Team already exists"}
+    print("team about to be created")
+    # Create a new team and include the IP address
+    execute_db_query("INSERT INTO teams (name, ip, score, attempted_questions, solved_questions, color) VALUES (?, ?, ?, ?, ?, ?)", (team.name, client_ip, 0, 0, 0, team_color), db="comp.db")
 
-if __name__ == "__main__":
-    print(execute_db_query("SELECT * FROM questions WHERE id = 11"))
-    print(get_question("11"))
-    print(get_team("Wantirna"))
+    access_token = Authorize.create_access_token(subject=team.name)
+    return {"access_token": access_token}

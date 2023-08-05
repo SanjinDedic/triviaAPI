@@ -1,0 +1,222 @@
+[
+  {
+      "id": 1,
+      "type": "multiple_choice",
+      "question": "Which of the following tools is often used for network discovery and security auditing?",
+      "options": [
+          "Nmap",
+          "Wireshark",
+          "Metasploit",
+          "All of the above"
+      ],
+      "answer": "d",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 2,
+      "type": "short_answer",
+      "question": "What is the common name for vulnerabilities that are unknown to the vendor?",
+      "answer": "Zero-day vulnerabilities",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 3,
+      "type": "multiple_choice",
+      "question": "Which of the following programming languages is most commonly used for writing exploit code?",
+      "options": [
+          "Python",
+          "Ruby",
+          "C",
+          "Java"
+      ],
+      "answer": "a",
+      "points": 20,
+      "image_link": ""
+  },
+  {
+      "id": 4,
+      "type": "short_answer",
+      "question": "What is the technique called where an attacker intercepts communication between two parties without their knowledge?",
+      "answer": "Man-in-the-Middle Attack",
+      "points": 50,
+      "image_link": ""
+  },
+  {
+      "id": 5,
+      "type": "multiple_choice",
+      "question": "Which type of malware is designed to replicate itself and spread to other computers?",
+      "options": [
+          "Virus",
+          "Worm",
+          "Trojan",
+          "Ransomware"
+      ],
+      "answer": "b",
+      "points": 20,
+      "image_link": ""
+  },
+  {
+      "id": 6,
+      "type": "short_answer",
+      "question": "What is the process of trying to decode encrypted or hashed data called?",
+      "answer": "Decryption",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 7,
+      "type": "multiple_choice",
+      "question": "Which of the following is a popular tool used for password cracking?",
+      "options": [
+          "John the Ripper",
+          "Nessus",
+          "Burp Suite",
+          "Aircrack-ng"
+      ],
+      "answer": "a",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 8,
+      "type": "short_answer",
+      "question": "What method is used to disguise a harmful link or website to make it appear legitimate?",
+      "answer": "Phishing",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 9,
+      "type": "multiple_choice",
+      "question": "What is the process of attempting to gain unauthorized access to a computer system by posing as an authorized user?",
+      "options": [
+          "Spoofing",
+          "Phishing",
+          "Brute-Force Attack",
+          "Social Engineering"
+      ],
+      "answer": "d",
+      "points": 20,
+      "image_link": ""
+  },
+  {
+      "id": 10,
+      "type": "short_answer",
+      "question": "What is the technique used by hackers to exploit a buffer overflow vulnerability in a targeted system?",
+      "answer": "Buffer Overflow Attack",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 11,
+      "type": "multiple_choice",
+      "question": "What type of attack involves overwhelming a system with traffic or requests to render it unusable?",
+      "options": [
+          "DoS Attack",
+          "Phishing Attack",
+          "Man-in-the-Middle Attack",
+          "Dictionary Attack"
+      ],
+      "answer": "a",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 12,
+      "type": "short_answer",
+      "question": "What is the name of the tool used to crack WEP and WPA keys on Wi-Fi networks?",
+      "answer": "Aircrack-ng",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 13,
+      "type": "multiple_choice",
+      "question": "Which protocol is commonly exploited in ARP spoofing attacks?",
+      "options": [
+          "HTTP",
+          "SMTP",
+          "ARP",
+          "DNS"
+      ],
+      "answer": "c",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 14,
+      "type": "short_answer",
+      "question": "What technology is used to securely connect to a remote network, often utilized by remote workers?",
+      "answer": "Virtual Private Network (VPN)",
+      "points": 20,
+      "image_link": ""
+  },
+  {
+      "id": 15,
+      "type": "multiple_choice",
+      "question": "What is the term for testing the security of a system by simulating an attack from a malicious source?",
+      "options": [
+          "Penetration Testing",
+          "Debugging",
+          "Encryption",
+          "Authentication"
+      ],
+      "answer": "a",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 16,
+      "type": "short_answer",
+      "question": "What does the 'S' stand for in HTTPS, signifying secure communication over a computer network?",
+      "answer": "Secure",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 17,
+      "type": "multiple_choice",
+      "question": "Which organization is responsible for defining and maintaining the standards for ethical hacking?",
+      "options": [
+          "FSF",
+          "W3C",
+          "EC-Council",
+          "IEEE"
+      ],
+      "answer": "c",
+      "points": 30,
+      "image_link": ""
+  },
+  {
+      "id": 18,
+      "type": "short_answer",
+      "question": "What method involves systematically guessing passwords to gain unauthorized access to a system?",
+      "answer": "Brute-Force Attack",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 19,
+      "type": "multiple_choice",
+      "question": "What type of malware is designed to give an attacker full control over a computer?",
+      "options": [
+          "Rootkit",
+          "Spyware",
+          "Worm",
+          "Adware"
+      ],
+      "answer": "a",
+      "points": 40,
+      "image_link": ""
+  },
+  {
+      "id": 20,
+      "type": "short_answer",
+      "question": "What is the practice of manipulating individuals into divulging confidential information called?",
+      "answer": "Social Engineering",
+      "points": 50,
+      "image_link": ""
+  }
+]

@@ -39,17 +39,21 @@ for q in questions:
     c.execute("INSERT INTO questions VALUES (?, ?, ?, ?)", (q['id'], q['question'], q['answer'], q['points']))
 
 
-c.execute('''CREATE TABLE teams(
-                name text, 
-                score integer, 
-                attempted_questions integer,
-                solved_questions integer, 
-                color text)''')
-
+c.execute('''
+    CREATE TABLE teams(
+        name text, 
+        ip text,
+        score integer, 
+        attempted_questions integer,
+        solved_questions integer, 
+        color text
+    )
+''')
 
 c.execute('''
     CREATE TABLE attempted_questions (
-        team_name text, 
+        team_name text,
+        ip text,
         question_id text, 
         timestamp datetime,
         solved boolean,
@@ -60,8 +64,8 @@ c.execute('''
 
 
 #enter 2 dummy teams
-c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", ('Wantirna', 0, 0, 0, random_color()))
-c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?)", ('Boronia', 0, 0, 0, random_color()))
+c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", ('Wantirna', '', 0, 0, 0, random_color()))
+c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", ('Boronia', '', 0, 0, 0, random_color()))
 
 conn.commit()
 conn.close()
