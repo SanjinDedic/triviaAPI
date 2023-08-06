@@ -1,222 +1,362 @@
 [
-  {
-      "id": 1,
-      "type": "multiple_choice",
-      "question": "Which of the following tools is often used for network discovery and security auditing?",
-      "options": [
-          "Nmap",
-          "Wireshark",
-          "Metasploit",
-          "All of the above"
-      ],
-      "answer": "d",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 2,
-      "type": "short_answer",
-      "question": "What is the common name for vulnerabilities that are unknown to the vendor?",
-      "answer": "Zero-day vulnerabilities",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 3,
-      "type": "multiple_choice",
-      "question": "Which of the following programming languages is most commonly used for writing exploit code?",
-      "options": [
-          "Python",
-          "Ruby",
-          "C",
-          "Java"
-      ],
-      "answer": "a",
-      "points": 20,
-      "image_link": ""
-  },
-  {
-      "id": 4,
-      "type": "short_answer",
-      "question": "What is the technique called where an attacker intercepts communication between two parties without their knowledge?",
-      "answer": "Man-in-the-Middle Attack",
-      "points": 50,
-      "image_link": ""
-  },
-  {
-      "id": 5,
-      "type": "multiple_choice",
-      "question": "Which type of malware is designed to replicate itself and spread to other computers?",
-      "options": [
-          "Virus",
-          "Worm",
-          "Trojan",
-          "Ransomware"
-      ],
-      "answer": "b",
-      "points": 20,
-      "image_link": ""
-  },
-  {
-      "id": 6,
-      "type": "short_answer",
-      "question": "What is the process of trying to decode encrypted or hashed data called?",
-      "answer": "Decryption",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 7,
-      "type": "multiple_choice",
-      "question": "Which of the following is a popular tool used for password cracking?",
-      "options": [
-          "John the Ripper",
-          "Nessus",
-          "Burp Suite",
-          "Aircrack-ng"
-      ],
-      "answer": "a",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 8,
-      "type": "short_answer",
-      "question": "What method is used to disguise a harmful link or website to make it appear legitimate?",
-      "answer": "Phishing",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 9,
-      "type": "multiple_choice",
-      "question": "What is the process of attempting to gain unauthorized access to a computer system by posing as an authorized user?",
-      "options": [
-          "Spoofing",
-          "Phishing",
-          "Brute-Force Attack",
-          "Social Engineering"
-      ],
-      "answer": "d",
-      "points": 20,
-      "image_link": ""
-  },
-  {
-      "id": 10,
-      "type": "short_answer",
-      "question": "What is the technique used by hackers to exploit a buffer overflow vulnerability in a targeted system?",
-      "answer": "Buffer Overflow Attack",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 11,
-      "type": "multiple_choice",
-      "question": "What type of attack involves overwhelming a system with traffic or requests to render it unusable?",
-      "options": [
-          "DoS Attack",
-          "Phishing Attack",
-          "Man-in-the-Middle Attack",
-          "Dictionary Attack"
-      ],
-      "answer": "a",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 12,
-      "type": "short_answer",
-      "question": "What is the name of the tool used to crack WEP and WPA keys on Wi-Fi networks?",
-      "answer": "Aircrack-ng",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 13,
-      "type": "multiple_choice",
-      "question": "Which protocol is commonly exploited in ARP spoofing attacks?",
-      "options": [
-          "HTTP",
-          "SMTP",
-          "ARP",
-          "DNS"
-      ],
-      "answer": "c",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 14,
-      "type": "short_answer",
-      "question": "What technology is used to securely connect to a remote network, often utilized by remote workers?",
-      "answer": "Virtual Private Network (VPN)",
-      "points": 20,
-      "image_link": ""
-  },
-  {
-      "id": 15,
-      "type": "multiple_choice",
-      "question": "What is the term for testing the security of a system by simulating an attack from a malicious source?",
-      "options": [
-          "Penetration Testing",
-          "Debugging",
-          "Encryption",
-          "Authentication"
-      ],
-      "answer": "a",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 16,
-      "type": "short_answer",
-      "question": "What does the 'S' stand for in HTTPS, signifying secure communication over a computer network?",
-      "answer": "Secure",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 17,
-      "type": "multiple_choice",
-      "question": "Which organization is responsible for defining and maintaining the standards for ethical hacking?",
-      "options": [
-          "FSF",
-          "W3C",
-          "EC-Council",
-          "IEEE"
-      ],
-      "answer": "c",
-      "points": 30,
-      "image_link": ""
-  },
-  {
-      "id": 18,
-      "type": "short_answer",
-      "question": "What method involves systematically guessing passwords to gain unauthorized access to a system?",
-      "answer": "Brute-Force Attack",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 19,
-      "type": "multiple_choice",
-      "question": "What type of malware is designed to give an attacker full control over a computer?",
-      "options": [
-          "Rootkit",
-          "Spyware",
-          "Worm",
-          "Adware"
-      ],
-      "answer": "a",
-      "points": 40,
-      "image_link": ""
-  },
-  {
-      "id": 20,
-      "type": "short_answer",
-      "question": "What is the practice of manipulating individuals into divulging confidential information called?",
-      "answer": "Social Engineering",
-      "points": 50,
-      "image_link": ""
-  }
+    {
+        "id": 1,
+        "type": "multiple_choice",
+        "question": "Which of the following tools is often used for network discovery and security auditing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Metasploit",
+            "All of the above"
+        ],
+        "answer": "d",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/1.png"
+    },
+    {
+        "id": 2,
+        "type": "short_answer",
+        "question": "What is the common name for vulnerabilities that are unknown to the vendor?",
+        "answer": "Zero-day vulnerabilities",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/2.png"
+    },
+    {
+        "id": 3,
+        "type": "multiple_choice",
+        "question": "Which of the following programming languages is most commonly used for writing exploit code?",
+        "options": [
+            "Python",
+            "Ruby",
+            "C",
+            "Java"
+        ],
+        "answer": "a",
+        "points": 20,
+        "image_link": "",
+        "image": "images_sec/3.png"
+    },
+    {
+        "id": 4,
+        "type": "short_answer",
+        "question": "What is the technique called where an attacker intercepts communication between two parties without their knowledge?",
+        "answer": "Man-in-the-Middle Attack",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/4.png"
+    },
+    {
+        "id": 5,
+        "type": "multiple_choice",
+        "question": "Which type of malware is designed to replicate itself and spread to other computers?",
+        "options": [
+            "Virus",
+            "Worm",
+            "Trojan",
+            "Ransomware"
+        ],
+        "answer": "b",
+        "points": 20,
+        "image_link": "",
+        "image": "images_sec/5.png"
+    },
+    {
+        "id": 6,
+        "type": "short_answer",
+        "question": "What is the process of trying to decode encrypted or hashed data called?",
+        "answer": "Decryption",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/6.png"
+    },
+    {
+        "id": 7,
+        "type": "multiple_choice",
+        "question": "Which of the following is a popular tool used for password cracking?",
+        "options": [
+            "John the Ripper",
+            "Nessus",
+            "Burp Suite",
+            "Aircrack-ng"
+        ],
+        "answer": "a",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/7.png"
+    },
+    {
+        "id": 8,
+        "type": "short_answer",
+        "question": "What method is used to disguise a harmful link or website to make it appear legitimate?",
+        "answer": "Phishing",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/8.png"
+    },
+    {
+        "id": 9,
+        "type": "multiple_choice",
+        "question": "What is the process of attempting to gain unauthorized access to a computer system by posing as an authorized user?",
+        "options": [
+            "Spoofing",
+            "Phishing",
+            "Brute-Force Attack",
+            "Social Engineering"
+        ],
+        "answer": "d",
+        "points": 20,
+        "image_link": "",
+        "image": "images_sec/9.png"
+    },
+    {
+        "id": 10,
+        "type": "short_answer",
+        "question": "What is the technique used by hackers to exploit a buffer overflow vulnerability in a targeted system?",
+        "answer": "Buffer Overflow Attack",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/10.png"
+    },
+    {
+        "id": 11,
+        "type": "multiple_choice",
+        "question": "What type of attack involves overwhelming a system with traffic or requests to render it unusable?",
+        "options": [
+            "DoS Attack",
+            "Phishing Attack",
+            "Man-in-the-Middle Attack",
+            "Dictionary Attack"
+        ],
+        "answer": "a",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/11.png"
+    },
+    {
+        "id": 12,
+        "type": "short_answer",
+        "question": "What is the name of the tool used to crack WEP and WPA keys on Wi-Fi networks?",
+        "answer": "Aircrack-ng",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/12.png"
+    },
+    {
+        "id": 13,
+        "type": "multiple_choice",
+        "question": "Which protocol is commonly exploited in ARP spoofing attacks?",
+        "options": [
+            "HTTP",
+            "SMTP",
+            "ARP",
+            "DNS"
+        ],
+        "answer": "c",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/13.png"
+    },
+    {
+        "id": 14,
+        "type": "short_answer",
+        "question": "What technology is used to securely connect to a remote network, often utilized by remote workers?",
+        "answer": "Virtual Private Network (VPN)",
+        "points": 20,
+        "image_link": "",
+        "image": "images_sec/14.png"
+    },
+    {
+        "id": 15,
+        "type": "multiple_choice",
+        "question": "What is the term for testing the security of a system by simulating an attack from a malicious source?",
+        "options": [
+            "Penetration Testing",
+            "Debugging",
+            "Encryption",
+            "Authentication"
+        ],
+        "answer": "a",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/15.png"
+    },
+    {
+        "id": 16,
+        "type": "short_answer",
+        "question": "What does the 'S' stand for in HTTPS, signifying secure communication over a computer network?",
+        "answer": "Secure",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/16.png"
+    },
+    {
+        "id": 17,
+        "type": "multiple_choice",
+        "question": "Which organization is responsible for defining and maintaining the standards for ethical hacking?",
+        "options": [
+            "FSF",
+            "W3C",
+            "EC-Council",
+            "IEEE"
+        ],
+        "answer": "c",
+        "points": 30,
+        "image_link": "",
+        "image": "images_sec/17.png"
+    },
+    {
+        "id": 18,
+        "type": "short_answer",
+        "question": "What method involves systematically guessing passwords to gain unauthorized access to a system?",
+        "answer": "Brute-Force Attack",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/18.png"
+    },
+    {
+        "id": 19,
+        "type": "multiple_choice",
+        "question": "What type of malware is designed to give an attacker full control over a computer?",
+        "options": [
+            "Rootkit",
+            "Spyware",
+            "Worm",
+            "Adware"
+        ],
+        "answer": "a",
+        "points": 40,
+        "image_link": "",
+        "image": "images_sec/19.png"
+    },
+    {
+        "id": 20,
+        "type": "short_answer",
+        "question": "What is the practice of manipulating individuals into divulging confidential information called?",
+        "answer": "Social Engineering",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/20.png"
+    },
+    {
+        "id": 21,
+        "type": "multiple_choice",
+        "question": "Which of the following encryption algorithms is considered theoretically broken and should no longer be used?",
+        "options": [
+            "AES",
+            "Blowfish",
+            "DES",
+            "Twofish"
+        ],
+        "answer": "c",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/21.png"
+    },
+    {
+        "id": 22,
+        "type": "short_answer",
+        "question": "Which advanced persistent threat (APT) group is believed to be associated with the Chinese military?",
+        "answer": "APT1 or Comment Crew",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/22.png"
+    },
+    {
+        "id": 23,
+        "type": "multiple_choice",
+        "question": "In the context of cybersecurity, what does 'ROP' stand for when bypassing protection mechanisms?",
+        "options": [
+            "Routing Over Protocol",
+            "Return-Oriented Programming",
+            "Remote Operational Procedure",
+            "Router On Premise"
+        ],
+        "answer": "b",
+        "points": 60,
+        "image_link": "",
+        "image": "images_sec/23.png"
+    },
+    {
+        "id": 24,
+        "type": "short_answer",
+        "question": "What name is given to the type of vulnerability that allows an attacker to run arbitrary SQL code on a website's database?",
+        "answer": "SQL Injection",
+        "points": 60,
+        "image_link": "",
+        "image": "images_sec/24.png"
+    },
+    {
+        "id": 25,
+        "type": "multiple_choice",
+        "question": "Which protocol provides confidentiality and integrity of data in transit between client and server in LDAP environments?",
+        "options": [
+            "LDAPS",
+            "SFTP",
+            "SCP",
+            "FTP"
+        ],
+        "answer": "a",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/25.png"
+    },
+    {
+        "id": 26,
+        "type": "short_answer",
+        "question": "In which type of attack does the attacker manipulate incremental values of TCP sequence numbers?",
+        "answer": "TCP Sequence Prediction Attack",
+        "points": 60,
+        "image_link": "",
+        "image": "images_sec/26.png"
+    },
+    {
+        "id": 27,
+        "type": "multiple_choice",
+        "question": "Which of the following is NOT a method for exploiting XSS vulnerabilities?",
+        "options": [
+            "Stored",
+            "Reflected",
+            "DOM-based",
+            "Payload-based"
+        ],
+        "answer": "d",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/27.png"
+    },
+    {
+        "id": 28,
+        "type": "short_answer",
+        "question": "Which programming flaw results from programs that allocate memory but don't free it, potentially leading to program crashes or execution of arbitrary code?",
+        "answer": "Memory Leak",
+        "points": 60,
+        "image_link": "",
+        "image": "images_sec/28.png"
+    },
+    {
+        "id": 29,
+        "type": "multiple_choice",
+        "question": "What technology relies on a trusted chain, starting with a root certificate, to validate the authenticity of a certificate?",
+        "options": [
+            "Certificate Revocation",
+            "Certificate Pinning",
+            "Certificate Chain",
+            "Certificate Binding"
+        ],
+        "answer": "c",
+        "points": 60,
+        "image_link": "",
+        "image": "images_sec/29.png"
+    },
+    {
+        "id": 30,
+        "type": "short_answer",
+        "question": "Which cybersecurity framework, developed by NIST, provides a set of best practices to manage and reduce cybersecurity risk?",
+        "answer": "NIST Cybersecurity Framework or CSF",
+        "points": 50,
+        "image_link": "",
+        "image": "images_sec/30.png"
+    }
 ]
