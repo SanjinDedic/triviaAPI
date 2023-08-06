@@ -81,6 +81,10 @@ The application provides the following API endpoints:
   - Parameters: `table_name` (optional). Defaults to 'grokkers' if not provided.
   - Response: List of teams from the specified table.
 
+- `GET /get_comp_table`: 
+  - Description: Fetches all the teams from the competition table.
+  - Response: List of teams from the competition table.
+
 - `POST /submit_answer`: 
   - Description: Submits an answer for a specific question.
   - Body: `Answer` object containing the team's ID, question ID, and the provided answer.
@@ -90,6 +94,12 @@ The application provides the following API endpoints:
   - Description: Quickly signs up a team.
   - Body: `QuickSignUp` object containing team details.
   - Response: If the team does not already exist in the 'grokkers' table, it creates a new team and returns an access token.
+
+- `POST /submit_answer_sec`: 
+  - Description: Secured endpoint to submit an answer for a specific question with additional security checks.
+  - Body: `Answer` object containing the question ID, provided answer, and team's name.
+  - Response: If the provided answer is correct, it updates the team's score and solved questions from the competition table, returns a success message, and logs the attempt. If incorrect, it returns the correct answer and logs the attempt. Also, performs various security checks such as checking for duplicate IPs, ensuring that a team does not attempt a question more than once, and ensuring questions are attempted at an acceptable pace.
+
 
 ## License
 This project is licensed under the [MIT Licence](https://choosealicense.com/licenses/mit/).
