@@ -275,6 +275,10 @@ async def quick_signup(team: QuickSignUp, request: Request, Authorize: AuthJWT =
     existing_team = execute_db_query("SELECT * FROM teams WHERE name = ?", (team.name,), fetchone=True, db="comp.db")
     if existing_team is not None:
         return {"message": "Team already exists"}
+    #check if there is another team with the same IP
+    existing_team = execute_db_query("SELECT * FROM teams WHERE ip = ?", (client_ip,), fetchone=True, db="comp.db")
+    if existing_team is not None:
+        return {"message": "Another team already exists with the same IP address"}
     print("team about to be created")
     # Create a new team and include the IP address
     execute_db_query("INSERT INTO teams (name, ip, score, attempted_questions, solved_questions, color) VALUES (?, ?, ?, ?, ?, ?)", (team.name, client_ip, 0, 0, 0, team_color), db="comp.db")
