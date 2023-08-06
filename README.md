@@ -7,6 +7,7 @@ This is a simple Quiz application built using the FastAPI framework. It provides
 ## Table of Contents
 
 - [Installation](#installation)
+- [Setting Up Virtual Environment](#setting-up-virtual-environment)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [License](#license)
@@ -28,13 +29,28 @@ pip install sqlite3
 pip install fastapi-jwt-auth
 ```
 
-You can then start the application by running:
+## Setting Up Virtual Environment
 
-```bash
-uvicorn main:app --reload
-```
+This project uses `Pipfile` and `Pipfile.lock` to manage dependencies in a virtual environment using `pipenv`.
 
-Replace `main` with the name of your python file.
+To set up the virtual environment:
+
+1. Install `pipenv` if you haven't:
+    ```bash
+    pip install pipenv
+    ```
+    
+2. Navigate to the project directory and create a virtual environment and install dependencies:
+    ```bash
+    pipenv install
+    ```
+
+3. To activate the virtual environment:
+    ```bash
+    pipenv shell
+    ```
+
+Now, you can run commands within the virtual environment context. To exit the virtual environment, simply type `exit`.
 
 ## Usage
 
@@ -44,14 +60,36 @@ You need to set an environment variable `TESTING` that indicates whether you are
 
 The logging is set up to store all the logs in `app.log`.
 
+Once you're set, start the application by running:
+
+```bash
+uvicorn main:app --reload
+```
+
+Replace `main` with the name of your python file.
+
 ## API Endpoints
 
 The application provides the following API endpoints:
 
-- `GET /test`: Returns a test message
-- `GET /get_teams_table`: Returns all the teams from the given table name. If no table name is provided, it defaults to the table 'grokkers'
-- `POST /submit_answer`: Takes an Answer object and validates it. If the provided answer is correct, it updates the team's score and solved questions.
-- `POST /quick_signup`: Takes a QuickSignUp object and creates a new team in the 'grokkers' table if it does not already exist. It then returns an access token.
+- `GET /test`: 
+  - Description: Used for testing if the API is running.
+  - Response: A test message.
+
+- `GET /get_teams_table`: 
+  - Description: Fetches all the teams from the given table name.
+  - Parameters: `table_name` (optional). Defaults to 'grokkers' if not provided.
+  - Response: List of teams from the specified table.
+
+- `POST /submit_answer`: 
+  - Description: Submits an answer for a specific question.
+  - Body: `Answer` object containing the team's ID, question ID, and the provided answer.
+  - Response: If the provided answer is correct, it updates the team's score and solved questions and returns a success message.
+
+- `POST /quick_signup`: 
+  - Description: Quickly signs up a team.
+  - Body: `QuickSignUp` object containing team details.
+  - Response: If the team does not already exist in the 'grokkers' table, it creates a new team and returns an access token.
 
 ## License
 This project is licensed under the [MIT Licence](https://choosealicense.com/licenses/mit/).
