@@ -40,11 +40,11 @@ def test_quick_signup_sec():
     assert "access_token" in response.json()
 
 
-def signup_sec():
+def test_quick_signup_sec_banned():
     response = client.post("/quick_signup_sec", 
-                           json={"name": "Booya"})
-    print(response.status_code)
-    print(response.text)
+                           json={"name": "Booya2"})
+    assert response.status_code == 200
+    assert "IP" in response.json()["message"]
 
 
 def test_get_comp_table():
@@ -81,9 +81,6 @@ def test_submit_ans_violate():
     assert 'question already attempted' in response.json()["security error"]
 
 
-
-
-
 def submit_answer_sec():
     response = client.post("/submit_answer_sec", 
                            json={"id": "1", 
@@ -98,4 +95,3 @@ if __name__ == "__main__":
     submit_answer_sec()
     print("test done -----------------------")
     submit_answer_sec()
-    signup_sec()

@@ -124,6 +124,33 @@ def security_validation(name: str, question: str):
     if len(result) > 0:
         print("question already attempted")
         return {"security error": "question already attempted"}
+    #define the timestamp for the most recent question attempt
+    result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ? ORDER BY timestamp DESC", (name, ), fetchone=True, db="comp.db")
+    if result:
+        recent_timestamp = result[3]
+        if (datetime.now() - datetime.strptime(recent_timestamp, "%Y-%m-%d %H:%M:%S.%f")).total_seconds() > 60:
+            print("too soon")
+            return {"security error": "irregular question timing"}
+    else:
+        print("no recent timestamp")
+    #define the timestamp for the least recent question attempt
+    result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ? ORDER BY timestamp ASC", (name, ), fetchone=True, db="comp.db")
+    if result:
+        first_timestamp = result[3]
+        #if first timestamp is older than 6 minutes return security error
+        if (datetime.now() - datetime.strptime(first_timestamp, "%Y-%m-%d %H:%M:%S.%f")).total_seconds() > 360:
+            print("too late")
+            return {"security error": "quiz has ended"}
+    else:
+        print("no first timestamp")
+    #check if the total number of questions attempted by a team is more than 10
+    result = execute_db_query("SELECT * FROM attempted_questions WHERE team_name = ?", (name, ), fetchone=False, db="comp.db")
+    if result:
+        if len(result) > 10:
+            return {"security error": "more than 10 question attempts"}
+    else:
+        print("no attempts")
+
     return True
     
 
