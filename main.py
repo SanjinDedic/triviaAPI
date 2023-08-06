@@ -20,28 +20,16 @@ logging.basicConfig(filename='app.log', level=logging.INFO,
 logging.info("FastAPI application started")
 app = FastAPI()
 
-testing = True
+testing = False
 
-class CustomCORSMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint):
-        origin = request.headers.get('origin', None)
-
-        with open("origins.txt", "a") as file:
-            file.write(f"Origin: {origin}\n")
-        
-        allow_origin = False
-        if origin:
-            if 'aitrivia.live' in origin or '.repl.co' in origin or 'cloudfront.net' in origin or "127" in origin:
-                allow_origin = True
-
-        if allow_origin:
-            response = await call_next(request)
-        else:
-            response = Response(content="Access not allowed", status_code=403)
-
-        return response
-
-app = FastAPI()
+# Allowed origins for CORS
+allowed_origins = [
+    "https://aitrivia.live",
+    "https://*.repl.co",
+    "https://*.cloudfront.net",
+    "http://127.0.0.2:5500",
+    "http://localhost"
+]
 
 if testing:
     app.add_middleware(
@@ -52,7 +40,13 @@ if testing:
         allow_headers=["*"],
     )
 else:
-    app.add_middleware(CustomCORSMiddleware)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 # Database function
