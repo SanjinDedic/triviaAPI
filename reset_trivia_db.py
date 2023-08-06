@@ -8,7 +8,8 @@ def random_color():
     r = random.randint(80, 255)
     g = random.randint(80, 255)
     b = random.randint(80, 255)
-    return f"#{r:02x}{g:02x}{b:02}"
+    return f"#{r:02x}{g:02x}{b:02x}"
+
 
 
 if os.path.exists('trivia.db'):
@@ -62,10 +63,13 @@ c.execute('''
     )
 ''')
 
+teams = ['test1', "test2", "test3"]
+from random import randint
+for team in teams:
+    ip = str(randint(0,255)) +','+str(randint(0,255)) +','+str(randint(0,255)) +','+str(randint(0,255))
+    score = randint(8,30)*10
+    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, ip, score, 5, 3, random_color()))
 
-#enter 2 dummy teams
-c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", ('Wantirna', '', 0, 0, 0, random_color()))
-c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", ('Boronia', '', 0, 0, 0, random_color()))
 
 conn.commit()
 conn.close()

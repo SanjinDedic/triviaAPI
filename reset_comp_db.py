@@ -63,9 +63,12 @@ c.execute('''
     )
 ''')
 
-teams = ['GitTest']
+teams = ['GitTest', "test2", "test3"]
+from random import randint
 for team in teams:
-    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, '127.0.0.8', 0, 0, 0, random_color()))
+    ip = str(randint(0,255)) +','+str(randint(0,255)) +','+str(randint(0,255)) +','+str(randint(0,255))
+    score = randint(8,30)*10
+    c.execute("INSERT INTO teams VALUES (?, ?, ?, ?, ?, ?)", (team, ip, score, 5, 3, random_color()))
 
 conn.commit()
 conn.close()
